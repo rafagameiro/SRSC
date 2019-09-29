@@ -4,7 +4,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 /**
- * Cifra simetrica em modo ECB
+ * Cifra simetrica em modo ECB - Electronic Code Block
  * Problema: texto em claro igual implica cifra igual
  */
 public class SimpleECBExample
@@ -14,7 +14,7 @@ public class SimpleECBExample
         throws Exception
     {
         byte[]  input = new byte[] { 
-                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+                0x01, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
                 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 
                 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
                 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
@@ -27,12 +27,13 @@ public class SimpleECBExample
         
         SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
         Cipher  cipher = Cipher.getInstance("AES/ECB/NoPadding", "SunJCE");
-
+        
         System.out.println("key   : " + Utils.toHex(keyBytes));
         System.out.println("input : " + Utils.toHex(input));
         
         // encryption 
         cipher.init(Cipher.ENCRYPT_MODE, key);
+        //apenas estamos a considerar o tamanho do input porque estamos a usar ECB
         byte[] cipherText = new byte[cipher.getOutputSize(input.length)];
         int ctLength = cipher.update(input, 0, input.length, cipherText, 0);
         ctLength += cipher.doFinal(cipherText, ctLength);
