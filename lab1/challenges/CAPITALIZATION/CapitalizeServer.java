@@ -53,6 +53,12 @@ public class CapitalizeServer {
         private Socket socket;
         private int clientNumber;
 
+        private static final String ALGORITHM = "AES";
+        private static final String INSTANCE = "AES/CBC/PKCS5Padding";
+
+        private static final String KEY = "B5F97243578AC94923211EA5E752B8EE";
+        private static final String IV = "olasdfredscsafdg";
+
         public Capitalizer(Socket socket, int clientNumber) {
             this.socket = socket;
             this.clientNumber = clientNumber;
@@ -76,36 +82,36 @@ public class CapitalizeServer {
                 PrintWriter out =
                     new PrintWriter(socket.getOutputStream(), true);
 
+                //initialize the cypher the program will use to encrypt the data
+                SecretKeySpec key = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+                System.out.println(IV.getBytes().length);
+                IvParameterSpec ivSpec = new IvParameterSpec(IV.getBytes());
+                Cipher c = Cipher.getInstance(INSTANCE);
+                  
                 // Send a welcome message to the client.
                 out.println("Hello, you are client #" + clientNumber + ".");
-                out.println("Enter a line with only a period to quit\n\n");
-                out.println("Please type the Encryption algorithm you want to use\n");
-
-                while(true) {
-                    String input = in.readLine();
-                    System.out.println(input);
-                    /*
-                    try {
-                        KeyGenerator kg = KeyGenerator.getInstance(input[0]);
-                        Cipher c = Cipher.getInstance(input[1]);
-                        break;
-                    } catch(Exception e) {
-                        out.println("The typed Encryption algorithm doesn't exist.\n");
-                        out.println("Please type the Encryption algorithm you want to use\n");
-                    }*/
-                }
+                out.println("Enter a line with only a period to quit\n");
 
                 // Get messages from the client, line by line; return them
                 // capitalized
                 while (true) {
                     String input = in.readLine();
-                    if (input == null || input.equals(".")) {
+                    c.init(Cipher.DECRYPT_MODE, key, ivSpec);
+
+                    String original = new String(c.doFinal(Base64.getDecoder().decode(input)));
+                    if (original == null || original.length() == 0 || original.equals(".")) {
                         break;
                     }
-                    out.println(input.toUpperCase());
+
+                    c.init(Cipher.ENCRYPT_MODE, key, ivSpec);
+                    byte[] encrypted = c.doFinal(original.toUpperCase().getBytes()); 
+                    
+                    System.out.println(Base64.getEncoder().encodeToString(encrypted));
+
+                    out.println(Base64.getEncoder().encodeToString(encrypted));
                 }
-            } catch (IOException e) {
-                log("Error handling client# " + clientNumber + ": " + e);
+            } catch (Exception e) {
+                 log("Error handling client# " + clientNumber + ": " + e);
             } finally {
                 try {
                     socket.close();

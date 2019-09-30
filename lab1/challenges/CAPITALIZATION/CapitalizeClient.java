@@ -12,6 +12,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import java.util.*;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 /**
  * A simple Swing-based client for the capitalization server.
  * It has a main frame window with a text field for entering
@@ -19,6 +24,11 @@ import javax.swing.JTextField;
  * them.
  */
 public class CapitalizeClient {
+
+    private static final String ALGORITHM = "AES";
+    private static final String INSTANCE = "AES/CBC/PKCS5Padding"; 
+    private static final String KEY = "B5F97243578AC94923211EA5E752B8EE";
+    private static final String IV = "olasdfredscsafdg";
 
     private BufferedReader in;
     private PrintWriter out;
@@ -37,32 +47,54 @@ public class CapitalizeClient {
         messageArea.setEditable(false);
         frame.getContentPane().add(dataField, "North");
         frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+        
+        try {
 
-        // Add Listeners
-        dataField.addActionListener(new ActionListener() {
-		/**
-		 * Responds to pressing the enter key in the textfield
-		 * by sending the contents of the text field to the
-		 * server and displaying the response from the server
-		 * in the text area.  If the response is "." we exit
-		 * the whole application, which closes all sockets,
-		 * streams and windows.
-		 */
-		public void actionPerformed(ActionEvent e) {
-		    out.println(dataField.getText());
-		    String response;
-		    try {
-			response = in.readLine();
-			if (response == null || response.equals("")) {
-			    System.exit(0);
-			}
-		    } catch (IOException ex) {
-			response = "Error: " + ex;
+            //initialize the cypher the program will use to encrypt the data
+            SecretKeySpec key = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+            IvParameterSpec ivSpec = new IvParameterSpec(IV.getBytes());
+            Cipher c = Cipher.getInstance(INSTANCE);
+
+            // Add Listeners
+            dataField.addActionListener(new ActionListener() {
+	    	    /**
+		    * Responds to pressing the enter key in the textfield
+		    * by sending the contents of the text field to the
+		    * server and displaying the response from the server
+		    * in the text area.  If the response is "." we exit
+		    * the whole application, which closes all sockets,
+		    * streams and windows.
+		    */
+		    public void actionPerformed(ActionEvent e) {
+                        String text = dataField.getText();
+                        String response;
+                        try {
+                            c.init(Cipher.ENCRYPT_MODE, key, ivSpec);
+                            byte[] encrypted = c.doFinal(text.getBytes());
+
+                            out.println(Base64.getEncoder().encodeToString(encrypted));
+
+                            c.init(Cipher.DECRYPT_MODE, key, ivSpec);
+			    response = in.readLine();
+
+			    if (response == null || response.equals("")) {
+			        System.exit(0);
+			    }
+                            response =
+                             new String(c.doFinal(Base64.getDecoder().decode(response)));
+
+		        } catch (Exception ex) {
+			    response = "Error: " + ex;
+		        }
+                    
+
+		        messageArea.append(response + "\n");
+		        dataField.selectAll();
 		    }
-		    messageArea.append(response + "\n");
-		    dataField.selectAll();
-		}
-	    });
+	        });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,9 +118,9 @@ public class CapitalizeClient {
         in = new BufferedReader(
 				new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
-
+        
         // Consume the initial welcoming messages from the server
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             messageArea.append(in.readLine() + "\n");
         }
     }
