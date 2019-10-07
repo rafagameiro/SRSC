@@ -1,0 +1,45 @@
+#/bin/sh!
+# Como criar uma keystore para guardar chaves simetricas
+#
+# keytool -genseckey -alias <entry> -keyalg <alg> -keysize <size> -keystore <keystorename> -storetype jceks
+# 
+# Notar que "by default" a keytool usa keystores JKS e estas keystores sao
+# usadas para suportar chaves assimetricas / alg. de chave publica ou gestao
+# de certificados de chave publcia nos diversos formatos suportados.
+#
+
+# Exemplo no caso de gestao de chaves simetricas
+# gerar e guardar uma chave AES de 256 bits numa entrada entry1 
+# na keystore mykeystore.jeks
+#
+# For more information on the keytool see:
+# https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html
+#
+keytool -genseckey -alias mykey1 -keyalg aes -keysize 256 -keystore mykeystore.jceks -storetype jceks
+keytool -genseckey -alias mykey2 -keyalg blowfish -keysize 448 -keystore mykeystore.jceks -storetype jceks
+
+# 
+# Can use jecks storetypes to manage "local secrets, secret-keys etc",
+# protected by PWDs, passphreases ...
+# We can also have jceks storetypes managing secrecy parameters, such as
+# other PWDs, secrets, multiple crypto secret keys, or parameters that
+# we want to maintain under secrecy and exposure control
+#
+# BUT ...
+# Java keystores with JECKS store types are only usable for Java (it is
+# an internal-format of a Java keystore (key-value) type. 
+# For a more generic use you can/must use standardiazed representation
+# formats for the stored entries, using preferentially the PKCS#12
+# representation pattern (standard), also manageable on possible
+# heterogeneous systems.
+
+# The keytool also provides you with format conversion facilities
+# between keystore types, ex:
+
+keytool -importkeystore -srckeystore mykeystore.jceks -srcstoretype jceks -destkeystore newkeystore.jceks -deststoretype pkcs12
+
+# Finally, you must rememeber that the keytools is ok mainly as a
+# "bootstrap" tool for crypto in Java ...
+# You can use also if you want keytool enabled GUI apps.
+# Ex: KeyStore Explorer (see https://keystore-explorer.org/ )
+
