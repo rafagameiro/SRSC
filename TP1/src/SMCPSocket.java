@@ -165,8 +165,9 @@ public class SMCPSocket extends MulticastSocket {
         MessageDigest hash = MessageDigest.getInstance(hashName);
         hash.update(payload);
 
-        //TODO get userID or user nickname
-        dataStream.write(1);
+        if(username.equals(""))
+            getUsername(payload);
+        dataStream.write(username);
         dataStream.write(sequenceNumb++);
         //TODO check how to create an psudo random number
         dataStream.write(Utils.createFixedRandom());
@@ -180,6 +181,14 @@ public class SMCPSocket extends MulticastSocket {
         Key key = keystore.getKey(chatID, PASSWORD.toCharArray());
 
         return data;
+    }
+
+    private void getUsername(byte [] message) {
+        DataInputStream istream = new DataInputStream(new ByteArrayInputStream(p.getData(), p.getOffset(), p.getLength()));
+
+        istream.readLong();
+        istream.readInt();
+        username = istream.readUTF(); 
     }
 
     private byte[] generateMAC(byte[] payload) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, InvalidKeyException {
