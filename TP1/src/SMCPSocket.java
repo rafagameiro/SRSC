@@ -2,8 +2,8 @@ import java.io.*;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
+import java.security.cert.CertificateException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -17,12 +17,18 @@ public class SMCPSocket extends MulticastSocket {
     static final byte VERSION_ID = 1;
     static final byte MESSAGE_TYPE = 0x01;
     static final String HASH_FUNCTION = "SHA256";
+    static final String PASSWORD = "changeit";
 
     static final String INVALID_ADDR = "Invalid chat address";
     static final String INVALID_HASH = "Invalid Hash function.";
+    static final String INVALID_ALG = "Invalid Algorithm.";
+    static final String CERT_EXPIRED = "Certificate Expired.";
 
     private String chatID;
     private int sequenceNumb;
+    private String username;
+    private FileInputStream keystoreStream;
+    private KeyStore keystore;
 
     //Obtained from JSON
     private String sessionID;
@@ -34,19 +40,30 @@ public class SMCPSocket extends MulticastSocket {
     private String macName;
     private int macKeySize;
 
-    public SMCPSocket(int port) throws IOException {
+    public SMCPSocket(int port) throws IOException, KeyStoreException {
         super(port);
         chatID = Integer.toString(port);
         sequenceNumb = 1;
+        keystore = KeyStore.getInstance("JCEKS");
     }
 
     @Override
     public void joinGroup(InetAddress mcastaddr) throws IOException {
-        String address = mcastaddr.getHostAddress() + ":" + chatID;
-        if(!chatAuthentication(address))
-            throw new IOException(INVALID_ADDR);
+        try {
+            String address = mcastaddr.getHostAddress() + ":" + chatID;
+            if(!chatAuthentication(address))
+                throw new IOException(INVALID_ADDR);
 
-        chatID = address;
+            chatID = address;
+            keystoreStream = new FileInputStream("SMCPKeystore.jceks");
+
+            keystore.load(keystoreStream, PASSWORD.toCharArray());
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println(INVALID_ALG);
+        } catch (CertificateException e) {
+            System.err.println(CERT_EXPIRED);
+        }
+
         super.joinGroup(mcastaddr);
     }
 
@@ -140,7 +157,7 @@ public class SMCPSocket extends MulticastSocket {
         return hash.digest();
     }
 
-    private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException {
+    private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException, UnrecoverableKeyException, KeyStoreException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream dataStream = new DataOutputStream(byteStream);
 
@@ -160,14 +177,16 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
 
         //TODO Apply cryptography
+        Key key = keystore.getKey(chatID, PASSWORD.toCharArray());
 
         return data;
     }
 
-    private byte[] generateMAC(byte[] payload) {
+    private byte[] generateMAC(byte[] payload) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, InvalidKeyException {
 
         Mac mac = MAC.getInstance(macName);
-        //fazer mac.init(key)
+        Key macKey = keystore.getKey(chatID + "H", PASSWORD.toCharArray());
+        mac.init(macKey);
 
         mac.update(payload);
 
