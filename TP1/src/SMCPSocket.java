@@ -8,9 +8,9 @@ import java.security.cert.CertificateException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import javax.crypto.Mac;
-
-import static java.security.CryptoPrimitive.MAC;
+import javax.crypto.*;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.IvParameterSpec;
 
 public class SMCPSocket extends MulticastSocket {
 
@@ -18,6 +18,8 @@ public class SMCPSocket extends MulticastSocket {
     static final byte MESSAGE_TYPE = 0x01;
     static final String HASH_FUNCTION = "SHA256";
     static final String PASSWORD = "changeit";
+
+    static final int GCM_TAG_LENGTH = 16;
 
     static final String INVALID_ADDR = "Invalid chat address";
     static final String INVALID_HASH = "Invalid Hash function.";
@@ -45,13 +47,14 @@ public class SMCPSocket extends MulticastSocket {
         chatID = Integer.toString(port);
         sequenceNumb = 1;
         keystore = KeyStore.getInstance("JCEKS");
+        username = "";
     }
 
     @Override
     public void joinGroup(InetAddress mcastaddr) throws IOException {
         try {
             String address = mcastaddr.getHostAddress() + ":" + chatID;
-            if(!chatAuthentication(address))
+            if (!chatAuthentication(address))
                 throw new IOException(INVALID_ADDR);
 
             chatID = address;
@@ -78,14 +81,14 @@ public class SMCPSocket extends MulticastSocket {
             dataStream.writeUTF(chatID);
             dataStream.writeByte(MESSAGE_TYPE);
             dataStream.write(computeSessionAttr());
-            byte [] securePayload = computePayload(p.getData());
+            byte[] securePayload = computePayload(p.getData());
 
             dataStream.writeInt(securePayload.length);
             dataStream.write(securePayload);
             dataStream.write(generateMAC(byteStream.toByteArray()));
             dataStream.close();
 
-        }catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | UnrecoverableKeyException | KeyStoreException | InvalidKeyException e) {
             System.err.println(INVALID_HASH);
         }
 
@@ -97,6 +100,14 @@ public class SMCPSocket extends MulticastSocket {
 
     @Override
     public void receive(DatagramPacket p) throws IOException {
+
+        //checks if the message hash is the same as the integrity hash
+        //if it is, gets the secure payload
+        //does the cryptography
+        //checks if the payload hash is the same as the previously computed
+        //if it is, returns the message
+        //calls super.receive(message)
+
         super.receive(p);
 
         DataInputStream istream = new DataInputStream(new ByteArrayInputStream(p.getData(), p.getOffset(), p.getLength()));
@@ -107,7 +118,7 @@ public class SMCPSocket extends MulticastSocket {
         System.out.println(magic);
         System.out.println(opCode);
         System.out.println(name);
-        if(opCode == 3) {
+        if (opCode == 3) {
             String message = istream.readUTF();
             System.out.println(message);
         }
@@ -157,20 +168,21 @@ public class SMCPSocket extends MulticastSocket {
         return hash.digest();
     }
 
-    private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException, UnrecoverableKeyException, KeyStoreException {
+    private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream dataStream = new DataOutputStream(byteStream);
+
+        SecureRandom random = new SecureRandom();
 
         //Computes the hash of the original payload
         MessageDigest hash = MessageDigest.getInstance(hashName);
         hash.update(payload);
 
-        if(username.equals(""))
+        if (username.equals(""))
             getUsername(payload);
-        dataStream.write(username);
+        dataStream.write(username.getBytes());
         dataStream.write(sequenceNumb++);
-        //TODO check how to create an psudo random number
-        dataStream.write(Utils.createFixedRandom());
+        dataStream.write(random.nextInt());
         dataStream.write(payload);
         dataStream.write(hash.digest());
 
@@ -178,22 +190,48 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
 
         //TODO Apply cryptography
-        Key key = keystore.getKey(chatID, PASSWORD.toCharArray());
+
 
         return data;
     }
 
-    private void getUsername(byte [] message) {
-        DataInputStream istream = new DataInputStream(new ByteArrayInputStream(p.getData(), p.getOffset(), p.getLength()));
+    private void getUsername(byte[] message) throws IOException {
+        DataInputStream istream = new DataInputStream(new ByteArrayInputStream(message, 0, message.length));
 
         istream.readLong();
         istream.readInt();
-        username = istream.readUTF(); 
+        username = istream.readUTF();
+    }
+
+    private byte[] applyCrypto(String mode, byte[] data) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
+
+        Cipher cipher = Cipher.getInstance(algorithmName + "/" + encryptMode + "/" + padding);
+        Key key = keystore.getKey(chatID, PASSWORD.toCharArray());
+
+        if (!encryptMode.equals("GCM")) {
+
+            IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+
+            if (mode.equalsIgnoreCase("Encrypt"))
+                cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+            else
+                cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+
+        } else {
+            GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, ivBytes);
+
+            if (mode.equalsIgnoreCase("Encrypt"))
+                cipher.init(Cipher.ENCRYPT_MODE, keySpec, gcmParameterSpec);
+            else
+                cipher.init(Cipher.DECRYPT_MODE, keySpec, gcmParameterSpec);
+        }
+
+        return cipher.doFinal(data);
     }
 
     private byte[] generateMAC(byte[] payload) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, InvalidKeyException {
 
-        Mac mac = MAC.getInstance(macName);
+        Mac mac = Mac.getInstance(macName);
         Key macKey = keystore.getKey(chatID + "H", PASSWORD.toCharArray());
         mac.init(macKey);
 

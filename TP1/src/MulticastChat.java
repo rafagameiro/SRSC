@@ -3,6 +3,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.security.KeyStoreException;
 import java.util.*;
 
 public class MulticastChat extends Thread {
@@ -44,7 +45,7 @@ public class MulticastChat extends Thread {
 
   public MulticastChat(String username, InetAddress group, int port, 
                        int ttl, 
-                       MulticastChatEventListener listener) throws IOException {
+                       MulticastChatEventListener listener) throws IOException, KeyStoreException {
 
     this.username = username;
     this.group = group;
