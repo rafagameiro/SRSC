@@ -8,4 +8,4 @@ IV:
  - for now, lets just put in the conf file and that's it.
  - If we have time, we think of another approach
 password Keystore:
- - I don't if it is try hard or not, but get a value or text in the conf file and compute the hash
+ - I don't if it is try hard or not, but get a value or text in the conf file and compute the hash (done)

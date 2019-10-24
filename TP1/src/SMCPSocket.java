@@ -1,9 +1,12 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.security.*;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
+import java.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -31,6 +34,10 @@ public class SMCPSocket extends MulticastSocket {
     private String username;
     private FileInputStream keystoreStream;
     private KeyStore keystore;
+    private int offset;
+    private int messageOff;
+    private int currMsgLen;
+    private int packetLen;
 
     //Obtained from JSON
     private String sessionID;
@@ -48,6 +55,7 @@ public class SMCPSocket extends MulticastSocket {
         sequenceNumb = 1;
         keystore = KeyStore.getInstance("JCEKS");
         username = "";
+        offset = 0;
     }
 
     @Override
@@ -78,8 +86,11 @@ public class SMCPSocket extends MulticastSocket {
         try {
 
             dataStream.writeByte(VERSION_ID);
+            offset++;
             dataStream.writeUTF(chatID);
+            offset += chatID.length();
             dataStream.writeByte(MESSAGE_TYPE);
+            offset++;
             dataStream.write(computeSessionAttr());
             byte[] securePayload = computePayload(p.getData());
 
@@ -107,21 +118,76 @@ public class SMCPSocket extends MulticastSocket {
         //checks if the payload hash is the same as the previously computed
         //if it is, returns the message
         //calls super.receive(message)
+        DataInputStream instream = new DataInputStream(new ByteArrayInputStream(p.getData(), p.getOffset(), p.getLength()));
+
+        try {
+            if (!checkMessageIntegrity(p.getData()))
+                System.err.println("The received message was corrupted!");
+
+            instream.skipBytes(offset);
+            int payloadLen = instream.readInt();
+            byte[] payload = null;
+            instream.read(payload, offset, payloadLen);
+            payload = applyCrypto("Decrypt", payload);
+
+            payload = checkPayloadIntegrity(payload);
+            if (payload.equals(null))
+                System.err.println("The received message was corrupted!");
+
+            p = new DatagramPacket(payload, payloadLen, p.getAddress(), p.getPort());
+
+        } catch (UnrecoverableKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        }
 
         super.receive(p);
+    }
 
-        DataInputStream istream = new DataInputStream(new ByteArrayInputStream(p.getData(), p.getOffset(), p.getLength()));
+    private boolean checkMessageIntegrity(byte[] data) throws IOException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, InvalidKeyException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        DataInputStream instream = new DataInputStream(new ByteArrayInputStream(data, 0, data.length));
+        DataOutputStream outStream = new DataOutputStream(byteStream);
 
-        long magic = istream.readLong();
-        int opCode = istream.readInt();
-        String name = istream.readUTF();
-        System.out.println(magic);
-        System.out.println(opCode);
-        System.out.println(name);
-        if (opCode == 3) {
-            String message = istream.readUTF();
-            System.out.println(message);
-        }
+        byte[] mac = null;
+
+        byte[] buffer = new byte[packetLen];
+        instream.read(buffer, 0, packetLen);
+        outStream.write(buffer, 0, packetLen);
+
+        instream.readFully(mac);
+        byte[] computedMac = generateMAC(byteStream.toByteArray());
+
+        return Arrays.equals(mac, computedMac);
+    }
+
+    private byte[] checkPayloadIntegrity(byte[] data) throws NoSuchAlgorithmException, IOException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        DataInputStream instream = new DataInputStream(new ByteArrayInputStream(data, 0, data.length));
+        DataOutputStream outStream = new DataOutputStream(byteStream);
+
+        byte[] hash = null;
+        byte[] payload = null;
+
+        //read everything to inside the instream
+        instream.read(payload, messageOff, currMsgLen);
+
+        MessageDigest computedHash = MessageDigest.getInstance(hashName);
+        computedHash.update(payload);
+        instream.readFully(hash);
+
+        return Arrays.equals(hash, computedHash.digest()) ? payload : null;
     }
 
     private boolean chatAuthentication(String address) {
@@ -165,7 +231,10 @@ public class SMCPSocket extends MulticastSocket {
         hash.update(hashName.getBytes());
         hash.update(macName.getBytes());
 
-        return hash.digest();
+        byte[] digest = hash.digest();
+        offset += digest.length;
+
+        return digest;
     }
 
     private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException {
@@ -173,6 +242,7 @@ public class SMCPSocket extends MulticastSocket {
         DataOutputStream dataStream = new DataOutputStream(byteStream);
 
         SecureRandom random = new SecureRandom();
+        currMsgLen = payload.length;
 
         //Computes the hash of the original payload
         MessageDigest hash = MessageDigest.getInstance(hashName);
@@ -181,8 +251,11 @@ public class SMCPSocket extends MulticastSocket {
         if (username.equals(""))
             getUsername(payload);
         dataStream.write(username.getBytes());
+        messageOff += username.length();
         dataStream.write(sequenceNumb++);
+        //messageOff += TODO check how to add integer length
         dataStream.write(random.nextInt());
+        //messageOff += TODO ^2
         dataStream.write(payload);
         dataStream.write(hash.digest());
 
@@ -206,7 +279,8 @@ public class SMCPSocket extends MulticastSocket {
     private byte[] applyCrypto(String mode, byte[] data) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
 
         Cipher cipher = Cipher.getInstance(algorithmName + "/" + encryptMode + "/" + padding);
-        Key key = keystore.getKey(chatID, PASSWORD.toCharArray());
+        String password = getPassword("sea");
+        Key key = keystore.getKey(chatID, password.toCharArray());
 
         if (!encryptMode.equals("GCM")) {
 
@@ -231,13 +305,30 @@ public class SMCPSocket extends MulticastSocket {
 
     private byte[] generateMAC(byte[] payload) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, InvalidKeyException {
 
+        packetLen = payload.length;
         Mac mac = Mac.getInstance(macName);
-        Key macKey = keystore.getKey(chatID + "H", PASSWORD.toCharArray());
+        String password = getPassword("mac");
+        Key macKey = keystore.getKey(chatID + ":MAC", password.toCharArray());
         mac.init(macKey);
 
         mac.update(payload);
 
         return mac.doFinal();
+    }
+
+    private String getPassword(String type) throws NoSuchAlgorithmException {
+
+        MessageDigest hash = MessageDigest.getInstance(hashName);
+
+        String[] chatName = sessionID.split(" ");
+
+        for (int i = 0; i < chatName.length; i++)
+            hash.update(chatName[i].getBytes());
+
+        hash.update(type.toUpperCase().getBytes());
+
+        return Base64.getEncoder().encodeToString(hash.digest()).substring(0, 16);
+
     }
 
 }
