@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
+import java.security.KeyStoreException;
 import java.util.*;
 
 // Interface para a sessao de chat swing-based
@@ -169,7 +170,7 @@ public class MChatCliente extends JFrame implements MulticastChatEventListener
 	
 	// Configuracao do grupo multicast da sessao de chat na interface do cliente
 	public void join(String username, InetAddress group, int port, 
-					 int ttl) throws IOException {
+					 int ttl) throws IOException, KeyStoreException {
 		setTitle("CHAT MulticastIP " + username + "@" + group.getHostAddress() 
 				 + ":" + port + " [TTL=" + ttl + "]");
 

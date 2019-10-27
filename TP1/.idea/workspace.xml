@@ -47,7 +47,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MChatCliente">
+  <component name="RunManager" selected="Application.ListAlgorithms">
+    <configuration name="ListAlgorithms" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ListAlgorithms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MChatCliente" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MChatCliente" />
       <module name="TP1" />
@@ -67,9 +73,11 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.MChatCliente" />
+      <item itemvalue="Application.ListAlgorithms" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ListAlgorithms" />
         <item itemvalue="Application.MChatCliente" />
       </list>
     </recent_temporary>

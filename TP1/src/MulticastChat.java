@@ -180,7 +180,7 @@ public class MulticastChat extends Thread {
 
         // Comprimento do DatagramPacket RESET antes do request
         packet.setLength(buffer.length);
-        msocket.receive(packet);
+        //msocket.receive(packet);
 
         DataInputStream istream = 
           new DataInputStream(new ByteArrayInputStream(packet.getData(), 

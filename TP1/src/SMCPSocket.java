@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class SMCPSocket extends MulticastSocket {
 
@@ -66,6 +67,9 @@ public class SMCPSocket extends MulticastSocket {
                 throw new IOException(INVALID_ADDR);
 
             chatID = address;
+            //USE FOR WINDOWS!!!!
+            //keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
+            //USE FOR LINUX!!!
             keystoreStream = new FileInputStream("SMCPKeystore.jceks");
 
             keystore.load(keystoreStream, PASSWORD.toCharArray());
@@ -84,23 +88,22 @@ public class SMCPSocket extends MulticastSocket {
         DataOutputStream dataStream = new DataOutputStream(byteStream);
 
         try {
-
+            System.out.println("OLAA|!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             dataStream.writeByte(VERSION_ID);
-            offset++;
             dataStream.writeUTF(chatID);
-            offset += chatID.length();
             dataStream.writeByte(MESSAGE_TYPE);
-            offset++;
             dataStream.write(computeSessionAttr());
             byte[] securePayload = computePayload(p.getData());
 
             dataStream.writeInt(securePayload.length);
+            offset = byteStream.size();
             dataStream.write(securePayload);
             dataStream.write(generateMAC(byteStream.toByteArray()));
             dataStream.close();
 
         } catch (NoSuchAlgorithmException | UnrecoverableKeyException | KeyStoreException | InvalidKeyException e) {
             System.err.println(INVALID_HASH);
+            e.printStackTrace();
         }
 
         byte[] data = byteStream.toByteArray();
@@ -126,7 +129,7 @@ public class SMCPSocket extends MulticastSocket {
 
             instream.skipBytes(offset);
             int payloadLen = instream.readInt();
-            byte[] payload = null;
+            byte[] payload = new byte[currMsgLen];
             instream.read(payload, offset, payloadLen);
             payload = applyCrypto("Decrypt", payload);
 
@@ -136,19 +139,9 @@ public class SMCPSocket extends MulticastSocket {
 
             p = new DatagramPacket(payload, payloadLen, p.getAddress(), p.getPort());
 
-        } catch (UnrecoverableKeyException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
+        } catch (UnrecoverableKeyException | NoSuchAlgorithmException | KeyStoreException |
+                InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException |
+                BadPaddingException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
         }
 
@@ -195,9 +188,9 @@ public class SMCPSocket extends MulticastSocket {
 
         try {
             //USE FOR WINDOWS!!!!
-            fr = new FileReader(new File("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCP.conf"));
+            //fr = new FileReader(new File("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCP.conf"));
             //USE FOR LINUX!!!
-            //fr = new FileReader(new File("./SMCP.conf"));
+            fr = new FileReader(new File("./SMCP.conf"));
 
             JsonObject endpoint = (new Gson()).fromJson(fr, JsonObject.class).getAsJsonObject(address);
             if (endpoint == null)
@@ -244,6 +237,8 @@ public class SMCPSocket extends MulticastSocket {
         SecureRandom random = new SecureRandom();
         currMsgLen = payload.length;
 
+        System.out.println(hashName);
+
         //Computes the hash of the original payload
         MessageDigest hash = MessageDigest.getInstance(hashName);
         hash.update(payload);
@@ -251,11 +246,9 @@ public class SMCPSocket extends MulticastSocket {
         if (username.equals(""))
             getUsername(payload);
         dataStream.write(username.getBytes());
-        messageOff += username.length();
         dataStream.write(sequenceNumb++);
-        //messageOff += TODO check how to add integer length
         dataStream.write(random.nextInt());
-        //messageOff += TODO ^2
+        messageOff = byteStream.size();
         dataStream.write(payload);
         dataStream.write(hash.digest());
 
@@ -276,28 +269,30 @@ public class SMCPSocket extends MulticastSocket {
         username = istream.readUTF();
     }
 
-    private byte[] applyCrypto(String mode, byte[] data) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
+    private byte[] applyCrypto(String mode, byte[] data) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
 
         Cipher cipher = Cipher.getInstance(algorithmName + "/" + encryptMode + "/" + padding);
         String password = getPassword("sea");
         Key key = keystore.getKey(chatID, password.toCharArray());
+
+        byte[] ivBytes = null;
 
         if (!encryptMode.equals("GCM")) {
 
             IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
 
             if (mode.equalsIgnoreCase("Encrypt"))
-                cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+                cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
             else
-                cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+                cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
 
         } else {
             GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, ivBytes);
 
             if (mode.equalsIgnoreCase("Encrypt"))
-                cipher.init(Cipher.ENCRYPT_MODE, keySpec, gcmParameterSpec);
+                cipher.init(Cipher.ENCRYPT_MODE, key, gcmParameterSpec);
             else
-                cipher.init(Cipher.DECRYPT_MODE, keySpec, gcmParameterSpec);
+                cipher.init(Cipher.DECRYPT_MODE, key, gcmParameterSpec);
         }
 
         return cipher.doFinal(data);
@@ -312,6 +307,8 @@ public class SMCPSocket extends MulticastSocket {
         mac.init(macKey);
 
         mac.update(payload);
+
+        mac.getMacLength();
 
         return mac.doFinal();
     }
