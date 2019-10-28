@@ -51,8 +51,6 @@ public class SMCPSocket extends MulticastSocket {
     private int macKeySize;
 
 
-
-
     //TODO change later!!!
     private byte[] ivBytes;
 
@@ -74,7 +72,7 @@ public class SMCPSocket extends MulticastSocket {
 
             chatID = address;
             //USE FOR WINDOWS!!!!
-            keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
+            //keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
             //USE FOR LINUX!!!
             keystoreStream = new FileInputStream("/home/arch/Documents/Programming/Java/SRSC/TP1/src/SMCPKeystore.jceks");
 
@@ -114,9 +112,7 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
         DatagramPacket packet = new DatagramPacket(data, data.length, p.getAddress(), p.getPort());
 
-        //super.send(packet);
-
-        receive(packet);
+        super.send(packet);
     }
 
     @Override
@@ -261,7 +257,6 @@ public class SMCPSocket extends MulticastSocket {
         dataStream.close();
         byte[] data = byteStream.toByteArray();
 
-        //TODO Apply cryptography
         data = applyCrypto("Encrypt", data);
 
         return data;
