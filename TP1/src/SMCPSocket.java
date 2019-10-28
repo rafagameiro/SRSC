@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -39,6 +38,7 @@ public class SMCPSocket extends MulticastSocket {
     private int messageOff;
     private int currMsgLen;
     private int packetLen;
+    private int macLen;
 
     //Obtained from JSON
     private String sessionID;
@@ -49,6 +49,12 @@ public class SMCPSocket extends MulticastSocket {
     private String hashName;
     private String macName;
     private int macKeySize;
+
+
+
+
+    //TODO change later!!!
+    private byte[] ivBytes;
 
     public SMCPSocket(int port) throws IOException, KeyStoreException {
         super(port);
@@ -70,7 +76,7 @@ public class SMCPSocket extends MulticastSocket {
             //USE FOR WINDOWS!!!!
             //keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
             //USE FOR LINUX!!!
-            keystoreStream = new FileInputStream("SMCPKeystore.jceks");
+            keystoreStream = new FileInputStream("/home/arch/Documents/Programming/Java/SRSC/TP1/src/SMCPKeystore.jceks");
 
             keystore.load(keystoreStream, PASSWORD.toCharArray());
         } catch (NoSuchAlgorithmException e) {
@@ -88,20 +94,19 @@ public class SMCPSocket extends MulticastSocket {
         DataOutputStream dataStream = new DataOutputStream(byteStream);
 
         try {
-            System.out.println("OLAA|!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             dataStream.writeByte(VERSION_ID);
             dataStream.writeUTF(chatID);
             dataStream.writeByte(MESSAGE_TYPE);
             dataStream.write(computeSessionAttr());
             byte[] securePayload = computePayload(p.getData());
 
-            dataStream.writeInt(securePayload.length);
             offset = byteStream.size();
+            dataStream.writeInt(securePayload.length);
             dataStream.write(securePayload);
             dataStream.write(generateMAC(byteStream.toByteArray()));
             dataStream.close();
 
-        } catch (NoSuchAlgorithmException | UnrecoverableKeyException | KeyStoreException | InvalidKeyException e) {
+        } catch (NoSuchAlgorithmException | UnrecoverableKeyException | KeyStoreException | InvalidKeyException | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException e) {
             System.err.println(INVALID_HASH);
             e.printStackTrace();
         }
@@ -109,7 +114,9 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
         DatagramPacket packet = new DatagramPacket(data, data.length, p.getAddress(), p.getPort());
 
-        super.send(packet);
+        //super.send(packet);
+
+        receive(packet);
     }
 
     @Override
@@ -129,15 +136,15 @@ public class SMCPSocket extends MulticastSocket {
 
             instream.skipBytes(offset);
             int payloadLen = instream.readInt();
-            byte[] payload = new byte[currMsgLen];
-            instream.read(payload, offset, payloadLen);
+            byte[] payload = new byte[payloadLen];
+            instream.read(payload, 0, payloadLen);
             payload = applyCrypto("Decrypt", payload);
 
             payload = checkPayloadIntegrity(payload);
             if (payload.equals(null))
                 System.err.println("The received message was corrupted!");
 
-            p = new DatagramPacket(payload, payloadLen, p.getAddress(), p.getPort());
+            p = new DatagramPacket(payload, currMsgLen, p.getAddress(), p.getPort());
 
         } catch (UnrecoverableKeyException | NoSuchAlgorithmException | KeyStoreException |
                 InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException |
@@ -153,7 +160,7 @@ public class SMCPSocket extends MulticastSocket {
         DataInputStream instream = new DataInputStream(new ByteArrayInputStream(data, 0, data.length));
         DataOutputStream outStream = new DataOutputStream(byteStream);
 
-        byte[] mac = null;
+        byte[] mac = new byte[macLen];
 
         byte[] buffer = new byte[packetLen];
         instream.read(buffer, 0, packetLen);
@@ -170,11 +177,12 @@ public class SMCPSocket extends MulticastSocket {
         DataInputStream instream = new DataInputStream(new ByteArrayInputStream(data, 0, data.length));
         DataOutputStream outStream = new DataOutputStream(byteStream);
 
-        byte[] hash = null;
-        byte[] payload = null;
+        byte[] hash = new byte[macLen];
+        byte[] payload = new byte[currMsgLen];
 
         //read everything to inside the instream
-        instream.read(payload, messageOff, currMsgLen);
+        instream.skipBytes(messageOff);
+        instream.read(payload, 0, currMsgLen);
 
         MessageDigest computedHash = MessageDigest.getInstance(hashName);
         computedHash.update(payload);
@@ -190,7 +198,7 @@ public class SMCPSocket extends MulticastSocket {
             //USE FOR WINDOWS!!!!
             //fr = new FileReader(new File("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCP.conf"));
             //USE FOR LINUX!!!
-            fr = new FileReader(new File("./SMCP.conf"));
+            fr = new FileReader(new File("/home/arch/Documents/Programming/Java/SRSC/TP1/src/SMCP.conf"));
 
             JsonObject endpoint = (new Gson()).fromJson(fr, JsonObject.class).getAsJsonObject(address);
             if (endpoint == null)
@@ -230,14 +238,12 @@ public class SMCPSocket extends MulticastSocket {
         return digest;
     }
 
-    private byte[] computePayload(byte[] payload) throws NoSuchAlgorithmException, IOException {
+    private byte[] computePayload(byte[] payload) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException, IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream dataStream = new DataOutputStream(byteStream);
 
         SecureRandom random = new SecureRandom();
         currMsgLen = payload.length;
-
-        System.out.println(hashName);
 
         //Computes the hash of the original payload
         MessageDigest hash = MessageDigest.getInstance(hashName);
@@ -256,7 +262,7 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
 
         //TODO Apply cryptography
-
+        data = applyCrypto("Encrypt", data);
 
         return data;
     }
@@ -275,7 +281,8 @@ public class SMCPSocket extends MulticastSocket {
         String password = getPassword("sea");
         Key key = keystore.getKey(chatID, password.toCharArray());
 
-        byte[] ivBytes = null;
+        if(ivBytes == null)
+            ivBytes = SecureRandom.getSeed(12);
 
         if (!encryptMode.equals("GCM")) {
 
@@ -287,6 +294,7 @@ public class SMCPSocket extends MulticastSocket {
                 cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
 
         } else {
+            System.out.println("Entrou aqui ne??");
             GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, ivBytes);
 
             if (mode.equalsIgnoreCase("Encrypt"))
@@ -305,6 +313,7 @@ public class SMCPSocket extends MulticastSocket {
         String password = getPassword("mac");
         Key macKey = keystore.getKey(chatID + ":MAC", password.toCharArray());
         mac.init(macKey);
+        macLen = mac.getMacLength();
 
         mac.update(payload);
 
@@ -319,8 +328,10 @@ public class SMCPSocket extends MulticastSocket {
 
         String[] chatName = sessionID.split(" ");
 
-        for (int i = 0; i < chatName.length; i++)
-            hash.update(chatName[i].getBytes());
+        for (int i = 0; i < chatName.length; i++) {
+            String word = Character.toString(chatName[i].charAt(0)).toUpperCase() + chatName[i].substring(1);
+            hash.update(word.getBytes());
+        }
 
         hash.update(type.toUpperCase().getBytes());
 
