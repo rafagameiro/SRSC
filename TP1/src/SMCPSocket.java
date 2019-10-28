@@ -74,7 +74,7 @@ public class SMCPSocket extends MulticastSocket {
 
             chatID = address;
             //USE FOR WINDOWS!!!!
-            //keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
+            keystoreStream = new FileInputStream("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCPKeystore.jceks");
             //USE FOR LINUX!!!
             keystoreStream = new FileInputStream("/home/arch/Documents/Programming/Java/SRSC/TP1/src/SMCPKeystore.jceks");
 
@@ -196,7 +196,7 @@ public class SMCPSocket extends MulticastSocket {
 
         try {
             //USE FOR WINDOWS!!!!
-            //fr = new FileReader(new File("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCP.conf"));
+            fr = new FileReader(new File("D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SMCP.conf"));
             //USE FOR LINUX!!!
             fr = new FileReader(new File("/home/arch/Documents/Programming/Java/SRSC/TP1/src/SMCP.conf"));
 

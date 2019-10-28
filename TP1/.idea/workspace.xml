@@ -47,7 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ListAlgorithms">
+  <component name="RunManager" selected="Application.MChatCliente">
     <configuration name="ListAlgorithms" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ListAlgorithms" />
       <method v="2">
@@ -77,8 +77,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ListAlgorithms" />
         <item itemvalue="Application.MChatCliente" />
+        <item itemvalue="Application.ListAlgorithms" />
       </list>
     </recent_temporary>
   </component>
