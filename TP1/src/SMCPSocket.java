@@ -23,6 +23,7 @@ public class SMCPSocket extends MulticastSocket {
     static final String PASSWORD = "changeit";
 
     static final int GCM_TAG_LENGTH = 16;
+    static final String[] ENCODE_MODE = {"206", "219", "257", "306", "319", "327", "506", "519", "527"};
 
     static final String INVALID_ADDR = "Invalid chat address";
     static final String INVALID_HASH = "Invalid Hash function.";
@@ -46,6 +47,7 @@ public class SMCPSocket extends MulticastSocket {
     private int keySize;
     private String encryptMode;
     private String padding;
+    private byte[] IV;
     private String hashName;
     private String macName;
     private int macKeySize;
@@ -205,6 +207,7 @@ public class SMCPSocket extends MulticastSocket {
             keySize = endpoint.get("SEAKS").getAsInt();
             encryptMode = endpoint.get("Mode").getAsString();
             padding = endpoint.get("Padding").getAsString();
+            IV = Base64.getDecoder().decode(endpoint.get("IV").getAsString().getBytes());
             hashName = endpoint.get("IntHash").getAsString();
             macName = endpoint.get("MAC").getAsString();
             macKeySize = endpoint.get("MAKKS").getAsInt();
