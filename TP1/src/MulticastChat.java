@@ -5,6 +5,7 @@ import java.io.*;
 import java.net.*;
 import java.security.KeyStoreException;
 import java.util.*;
+import SecureProtocol.SMCPSocket;
 
 public class MulticastChat extends Thread {
 
@@ -101,6 +102,7 @@ public class MulticastChat extends Thread {
   protected void processJoin(DataInputStream istream, InetAddress address, 
                              int port) throws IOException {
     String name = istream.readUTF();
+    System.out.println(name);
 
     try {
       listener.chatParticipantJoined(name, address, port);
@@ -180,7 +182,9 @@ public class MulticastChat extends Thread {
 
         // Comprimento do DatagramPacket RESET antes do request
         packet.setLength(buffer.length);
-        //msocket.receive(packet);
+        msocket.receive(packet);
+
+        System.out.println(packet.getLength());
 
         DataInputStream istream = 
           new DataInputStream(new ByteArrayInputStream(packet.getData(), 
@@ -190,9 +194,9 @@ public class MulticastChat extends Thread {
 
         if (magic != CHAT_MAGIC_NUMBER) {
           continue;
-
         } 
         int opCode = istream.readInt();
+
         switch (opCode) {
         case JOIN:
           processJoin(istream, packet.getAddress(), packet.getPort());
@@ -219,7 +223,9 @@ public class MulticastChat extends Thread {
       } catch (Throwable e) {
         error("Processing error: " + e.getClass().getName() + ": " 
               + e.getMessage());
-      } 
+        isActive = false;
+        e.printStackTrace();
+      }
     } 
 
     try {
