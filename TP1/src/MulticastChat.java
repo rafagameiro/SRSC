@@ -3,8 +3,7 @@
 
 import java.io.*;
 import java.net.*;
-import java.security.KeyStoreException;
-import java.util.*;
+
 import SecureProtocol.SMCPSocket;
 
 public class MulticastChat extends Thread {
@@ -46,7 +45,7 @@ public class MulticastChat extends Thread {
 
   public MulticastChat(String username, InetAddress group, int port, 
                        int ttl, 
-                       MulticastChatEventListener listener) throws IOException, KeyStoreException {
+                       MulticastChatEventListener listener) throws IOException {
 
     this.username = username;
     this.group = group;
@@ -184,8 +183,6 @@ public class MulticastChat extends Thread {
         packet.setLength(buffer.length);
         msocket.receive(packet);
 
-        System.out.println(packet.getLength());
-
         DataInputStream istream = 
           new DataInputStream(new ByteArrayInputStream(packet.getData(), 
                 packet.getOffset(), packet.getLength()));
@@ -223,8 +220,6 @@ public class MulticastChat extends Thread {
       } catch (Throwable e) {
         error("Processing error: " + e.getClass().getName() + ": " 
               + e.getMessage());
-        isActive = false;
-        e.printStackTrace();
       }
     } 
 

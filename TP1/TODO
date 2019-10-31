@@ -3,10 +3,6 @@ development:
     private methods go inside the class and become protected
 
 
-
-IV:
- - Time to think on another approach
-
 Try to remove packetLen and see what happens
 if its needed replace with p.getLength() - macLen
 
