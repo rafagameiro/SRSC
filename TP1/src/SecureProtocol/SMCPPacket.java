@@ -13,6 +13,24 @@ import java.util.Base64;
 
 public class SMCPPacket {
 
+    static final String FILE_LOCATION = "D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SecureProtocol\\Config\\MessageLog.conf";
+    static final String HASH_FUNCTION = "SHA256";
+
+    static final int GCM_TAG_LENGTH = 12;
+    static final String[] ENCODE_MODE = {"206", "219", "257", "306", "319", "327", "506", "519", "527"};
+
+    private String chatID;
+    private int sequenceNumb;
+    private String username;
+    private int packetLen;
+    private int currMsgLen;
+    private int macLen;
+    private int offset;
+    private int messageOff;
+
+    private KeyStore keystore;
+
+    //Obtained from JSON
     private String sessionID;
     private String algorithmName;
     private int keySize;
@@ -209,7 +227,5 @@ public class SMCPPacket {
         return Base64.getEncoder().encodeToString(hash.digest()).substring(0, 16);
 
     }
-
-}
 
 }

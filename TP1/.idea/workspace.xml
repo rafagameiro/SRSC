@@ -24,10 +24,11 @@
   <component name="ProjectId" id="1SQOBoR13NG6tMAnMORSJhUtzuh" />
   <component name="PropertiesComponent">
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$/../../../../Downloads" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.idea/gson-2.8.2.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Dependencies/gson-2.8.2.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
