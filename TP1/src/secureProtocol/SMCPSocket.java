@@ -86,7 +86,6 @@ public class SMCPSocket extends MulticastSocket {
      */
     @Override
     public void joinGroup(InetAddress mcastaddr) throws IOException {
-        System.out.println(new File("").getAbsoluteFile());
         try {
             String address = mcastaddr.getHostAddress() + ":" + chatID;
             if (!chatAuthentication(address))
@@ -94,7 +93,6 @@ public class SMCPSocket extends MulticastSocket {
 
             chatID = address;
             log = new Logger(address);
-            //keystoreStream = new FileInputStream((new File("").getAbsoluteFile()) + KEYSTORE_LOCATION);
             keystoreStream = getClass().getResourceAsStream(KEYSTORE_LOCATION);
 
             keystore = KeyStore.getInstance("JCEKS");
@@ -319,13 +317,11 @@ public class SMCPSocket extends MulticastSocket {
      */
     private boolean chatAuthentication(String address) {
 
-        FileReader fr;
-        InputStream teste;
+        InputStream is;
         try {
-            //fr = new FileReader(new File((new File("").getAbsoluteFile()) + CONFIG_LOCATION));
-            teste = getClass().getResourceAsStream(CONFIG_LOCATION);
+            is = getClass().getResourceAsStream(CONFIG_LOCATION);
 
-            JsonObject endpoint = (new Gson()).fromJson(new InputStreamReader(teste), JsonObject.class).getAsJsonObject(address);
+            JsonObject endpoint = (new Gson()).fromJson(new InputStreamReader(is), JsonObject.class).getAsJsonObject(address);
             if (endpoint == null)
                 return false;
 
