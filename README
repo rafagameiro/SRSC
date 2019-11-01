@@ -1,0 +1,30 @@
+//SRSC 19/20
+// Project Overall and How to run it
+
+Only the phase 1 was implemented in this Project
+The main classe focused on the security of the IP multicast channels is SMCPSocket class, inside the secureProtocol package
+There are two created exception, TamperedMessageException and ReplayingMessageException
+There isso also a class called Logger which manages the message log
+Inside the secureProtocol package there is another folder called Config which has all the configuration files essential to program
+Those are, the keystore, the SMCP.conf file and the MessageLog.conf file
+
+Since the MessageLog.conf file needs to be rewritten it's outside of the generated jar
+
+To run the jar you just need to type the following command
+
+java -jar TP1.jar (name) (ip multicast address) (port)
+
+- name = it's your nickname that the application will use to identify you
+
+- IP multicast address = IP multicast where the chat room is registered 
+
+- port = port where the chat room sends and receives messages
+ 
+The available IP addresses and ports are
+224.5.6.7 9000
+252.10.20.30 12224
+230.100.100.100 6666
+
+To verify is Project jar is signed you can type
+
+jarsigned -verify TP1.jar -keystore signKeystore

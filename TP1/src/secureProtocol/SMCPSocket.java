@@ -40,7 +40,7 @@ public class SMCPSocket extends MulticastSocket {
     private String chatID;
     private int sequenceNumb;
     private String username;
-    private FileInputStream keystoreStream;
+    private InputStream keystoreStream;
     private KeyStore keystore;
     private Logger log;
     private int offset;
@@ -78,14 +78,15 @@ public class SMCPSocket extends MulticastSocket {
         destSeqNumb = 0;
     }
 
-    @Override
     /**
      * Checks if the typed address and port match some chat entry
      * If it does, loads a log stored in memory will all the previous messages
      * And it also creates a stream to the keystore in order to access the keys needed to use the algorithm
      * associated with the current chat room
      */
+    @Override
     public void joinGroup(InetAddress mcastaddr) throws IOException {
+        System.out.println(new File("").getAbsoluteFile());
         try {
             String address = mcastaddr.getHostAddress() + ":" + chatID;
             if (!chatAuthentication(address))
@@ -93,7 +94,8 @@ public class SMCPSocket extends MulticastSocket {
 
             chatID = address;
             log = new Logger(address);
-            keystoreStream = new FileInputStream((new File("").getAbsoluteFile()) + KEYSTORE_LOCATION);
+            //keystoreStream = new FileInputStream((new File("").getAbsoluteFile()) + KEYSTORE_LOCATION);
+            keystoreStream = getClass().getResourceAsStream(KEYSTORE_LOCATION);
 
             keystore = KeyStore.getInstance("JCEKS");
             keystore.load(keystoreStream, PASSWORD.toCharArray());
@@ -110,7 +112,6 @@ public class SMCPSocket extends MulticastSocket {
         super.joinGroup(mcastaddr);
     }
 
-    @Override
     /**
      * Creates a new packet to be sent to the users in the chat room
      * The methods goes through the following process
@@ -124,6 +125,7 @@ public class SMCPSocket extends MulticastSocket {
      * Finally, a MAC is generated in order to provide some integrity prove and with the data for the datagram packet is generated
      * The method super.send() is called and the packet is send to the other users in the chat, including the local user.
      */
+    @Override
     public void send(DatagramPacket p) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream dataStream = new DataOutputStream(byteStream);
@@ -154,10 +156,10 @@ public class SMCPSocket extends MulticastSocket {
         byte[] data = byteStream.toByteArray();
         DatagramPacket packet = new DatagramPacket(data, data.length, p.getAddress(), p.getPort());
 
+        log.storeLogs();
         super.send(packet);
     }
 
-    @Override
     /**
      * calls super.receive(message) to receive the message
      * checks if the message computed hash is the same as the integrity hash
@@ -167,6 +169,7 @@ public class SMCPSocket extends MulticastSocket {
      * If it is, the message will not be processed, but if it is not, it will copy the information
      * into the buffer inside the datagram packet
      */
+    @Override
     public void receive(DatagramPacket p) throws IOException {
 
         super.receive(p);
@@ -317,10 +320,12 @@ public class SMCPSocket extends MulticastSocket {
     private boolean chatAuthentication(String address) {
 
         FileReader fr;
+        InputStream teste;
         try {
-            fr = new FileReader(new File((new File("").getAbsoluteFile()) + CONFIG_LOCATION));
+            //fr = new FileReader(new File((new File("").getAbsoluteFile()) + CONFIG_LOCATION));
+            teste = getClass().getResourceAsStream(CONFIG_LOCATION);
 
-            JsonObject endpoint = (new Gson()).fromJson(fr, JsonObject.class).getAsJsonObject(address);
+            JsonObject endpoint = (new Gson()).fromJson(new InputStreamReader(teste), JsonObject.class).getAsJsonObject(address);
             if (endpoint == null)
                 return false;
 
@@ -334,7 +339,7 @@ public class SMCPSocket extends MulticastSocket {
             macName = endpoint.get("MAC").getAsString();
             macKeySize = endpoint.get("MAKKS").getAsInt();
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             return false;
         }
 
@@ -426,6 +431,7 @@ public class SMCPSocket extends MulticastSocket {
         istream.readLong();
         istream.readInt();
         username = istream.readUTF();
+        sequenceNumb = log.setSequenceNumber(username);
     }
 
     /**

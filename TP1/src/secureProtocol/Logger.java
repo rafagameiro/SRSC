@@ -11,7 +11,7 @@ public class Logger {
 
     static final String FILE_NOT_FOUND = "The config File does not exist.";
     static final String IO_EXCEPTION = "An error occurred during the creation o the writing of the log.";
-    static final String FILE_LOCATION = "/secureProtocol/Config/MessageLog.conf";
+    static final String FILE_LOCATION = "/MessageLog.conf";
 
     static final String CHAT_JOIN_MESSAGE = "NOVO PARTICIPANTE: %s juntou-se ao grupo do chat.";
     static final String CHAT_LEAVE_MESSAGE = "ABANDONO: %s abandonou o grupo de chat.";
@@ -33,6 +33,7 @@ public class Logger {
      * If the file containing the logs was not found or correctly open an FileNotFoundException is thrown
      */
     private void getLogs() {
+
         FileReader fr;
         try {
             fr = new FileReader(new File((new File("").getAbsoluteFile()) + FILE_LOCATION));
@@ -42,10 +43,29 @@ public class Logger {
             messages = gson.fromJson(log, new TypeToken<LinkedList<String>>() {
             }.getType());
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.err.println(FILE_NOT_FOUND);
         }
 
+    }
+
+    /**
+     * Computes the next sequence number the local user must have in order to maintain the log sequence
+     *
+     * @param user nickname of the local user
+     * @return next sequence number the message from this user must have
+     */
+    protected int setSequenceNumber(String user) {
+
+        String msg = "";
+        int count = 1;
+        for (String message: messages) {
+            msg = message.split("-")[0];
+            if(msg.equals(user))
+                count++;
+        }
+
+        return count;
     }
 
     /**
@@ -82,9 +102,6 @@ public class Logger {
 
         String entry = user + "-" + sequenceNumber + "-" + message;
         messages.add(entry);
-
-        if (code == 2)
-            storeLogs();
     }
 
     /**
@@ -92,20 +109,22 @@ public class Logger {
      * If the file was not found an FileNotFoundException is thrown
      * If some error happens during the writing in the file, an IOException is thrown
      */
-    private void storeLogs() {
+    protected void storeLogs() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileWriter fw;
         BufferedReader br;
         try {
 
-            br = new BufferedReader(new FileReader(new File((new File("").getAbsoluteFile()) + FILE_LOCATION)));
-            fw = new FileWriter(new File((new File("").getAbsoluteFile()) + FILE_LOCATION));
+            br = new BufferedReader(new FileReader(new File(new File("").getAbsoluteFile() + FILE_LOCATION)));
             JsonObject log = (new Gson()).fromJson(br, JsonObject.class).getAsJsonObject();
             JsonElement element = gson.toJsonTree(messages, new TypeToken<LinkedList<String>>() {
             }.getType());
 
             log.add(address, element.getAsJsonArray());
+
+
+            fw = new FileWriter(new File((new File("").getAbsoluteFile()) + FILE_LOCATION));
             gson.toJson(log, fw);
 
             fw.flush();
