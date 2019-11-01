@@ -10,7 +10,13 @@ import com.google.gson.reflect.TypeToken;
 public class Logger {
 
     static final String FILE_NOT_FOUND = "The config File does not exist.";
-    static final String FILE_LOCATION = "D:\\Rafael Gameiro\\Documents\\Programming\\SRSC\\TP1\\src\\SecureProtocol\\Config\\MessageLog.conf";
+    static final String FILE_LOCATION = "/SecureProtocol/Config/MessageLog.conf";
+
+    static final String CHAT_JOIN_MESSAGE ="NOVO PARTICIPANTE: %s juntou-se ao grupo do chat.";
+    static final String CHAT_LEAVE_MESSAGE ="ABANDONO: %s abandonou o grupo de chat.";
+
+    static final int JOIN = 1;
+    static final int LEAVE = 2;
 
     private List<String> messages;
     private String address;
@@ -24,7 +30,7 @@ public class Logger {
     private void getLogs() {
         FileReader fr;
         try {
-            fr = new FileReader(new File(FILE_LOCATION));
+            fr = new FileReader(new File((new File("").getAbsoluteFile()) + FILE_LOCATION));
             JsonArray log = (new Gson()).fromJson(fr, JsonObject.class).getAsJsonArray(address);
 
             Gson gson = new Gson();
@@ -36,20 +42,44 @@ public class Logger {
 
     }
 
-    protected void addMessage(String user, int sequenceNumber, String message) {
-        String entry = user + "-" + sequenceNumber + "-" + message;
+    protected void addMessage(String user, int sequenceNumber, byte[] payload) throws IOException {
 
+        int code = 0;
+        String message = "";
+        try {
+            DataInputStream instream = new DataInputStream(new ByteArrayInputStream(payload, 0, payload.length));
+            instream.readLong();
+            code = instream.readInt();
+            instream.readUTF();
+
+            message = instream.readUTF();
+        }catch (EOFException e) {
+            switch (code) {
+                case JOIN:
+                    message = String.format(CHAT_JOIN_MESSAGE, user);
+                    break;
+                case LEAVE:
+                    message = String.format(CHAT_LEAVE_MESSAGE, user);
+                    break;
+            }
+        }
+
+        String entry = user + "-" + sequenceNumber + "-" + message;
         messages.add(entry);
+
+        if (code == 2)
+            storeLogs();
     }
 
-    protected void storeLogs() {
+    private void storeLogs() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileWriter fw;
         BufferedReader br;
         try {
-            br = new BufferedReader(new FileReader(FILE_LOCATION));
-            fw = new FileWriter(FILE_LOCATION);
+
+            br = new BufferedReader(new FileReader(new File((new File("").getAbsoluteFile()) + FILE_LOCATION)));
+            fw = new FileWriter(new File((new File("").getAbsoluteFile()) + FILE_LOCATION));
             JsonObject log = (new Gson()).fromJson(br, JsonObject.class).getAsJsonObject();
             JsonElement element = gson.toJsonTree(messages, new TypeToken<LinkedList<String>>() {
             }.getType());

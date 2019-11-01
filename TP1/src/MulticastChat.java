@@ -220,6 +220,7 @@ public class MulticastChat extends Thread {
       } catch (Throwable e) {
         error("Processing error: " + e.getClass().getName() + ": " 
               + e.getMessage());
+        e.printStackTrace();
       }
     } 
 
