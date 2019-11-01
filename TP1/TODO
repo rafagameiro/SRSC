@@ -1,8 +1,0 @@
-create class to struct the creation of the new packet
-development:
-    private methods go inside the class and become protected
-
-
-Try to remove packetLen and see what happens
-if its needed replace with p.getLength() - macLen
-
