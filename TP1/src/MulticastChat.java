@@ -101,7 +101,6 @@ public class MulticastChat extends Thread {
     protected void processJoin(DataInputStream istream, InetAddress address,
                                int port) throws IOException {
         String name = istream.readUTF();
-        System.out.println(name);
 
         try {
             listener.chatParticipantJoined(name, address, port);

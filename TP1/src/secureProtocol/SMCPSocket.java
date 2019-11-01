@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 
 import exceptions.ReplayingMessageException;
 import exceptions.TamperedMessageException;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 
 public class SMCPSocket extends MulticastSocket {
@@ -201,8 +202,6 @@ public class SMCPSocket extends MulticastSocket {
         outstream.write(msgtype);
 
         instream.read(sessionAttr, 0, sessionAttr.length);
-        if (sessionAttr != this.sessionAttr)
-            throw new TamperedMessageException(TAMPERED_MESSAGE);
         outstream.write(sessionAttr);
 
         outstream.writeInt(instream.readInt());
