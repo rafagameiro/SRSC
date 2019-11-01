@@ -1,4 +1,4 @@
-package SecureProtocol;
+package secureProtocol;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

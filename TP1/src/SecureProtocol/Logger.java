@@ -1,4 +1,4 @@
-package SecureProtocol;
+package secureProtocol;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 public class Logger {
 
     static final String FILE_NOT_FOUND = "The config File does not exist.";
-    static final String FILE_LOCATION = "/SecureProtocol/Config/MessageLog.conf";
+    static final String FILE_LOCATION = "/secureProtocol/Config/MessageLog.conf";
 
     static final String CHAT_JOIN_MESSAGE ="NOVO PARTICIPANTE: %s juntou-se ao grupo do chat.";
     static final String CHAT_LEAVE_MESSAGE ="ABANDONO: %s abandonou o grupo de chat.";
