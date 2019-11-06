@@ -1,0 +1,25 @@
+// SRSC 2019/2020 Labs
+// Generate DH Parameters
+// From a DH Group - Primitive Root, generates a Prime P w/ the
+// required size
+openssl dhparam -out dhparam2.pem -2 512
+openssl dhparam -out dhparam5.pem -5 512
+openssl dhparam -out dhparam2.pem -2 1024
+openssl dhparam -out dhparam5.pem -5 1024
+openssl dhparam -out dhparam2.pem -2 2048
+openssl dhparam -out dhparam5.pem -5 2048
+// Can use also:
+openssl genpkey -genparam -algorithm DH -out dhp.pem
+//
+// See generated parameters in the file
+//
+cat dhparam2.pem
+cat dhparam5.pem
+cat dhp.pem
+//
+// To see the generated DH Parameters
+openssl pkeyparam -in dhparam2.pem -text
+openssl pkeyparam -in dhparam5.pem -text
+openssl pkeyparam -in dhp.pem -text
+//
+

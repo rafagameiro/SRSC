@@ -1,0 +1,45 @@
+// SRSC 1920 Labs, hj, Oct/2019
+// Diffie Hellman Secret Key Exchange using OpenSSL
+
+
+// DH Agreement between Alice and Bob
+// using openssl ...
+//
+// Given pre-generated parameters (previously in dhp.pem)
+//
+// Alice
+openssl genpkey -paramfile dhp.pem -out dhkeyALICE.pem
+openssl pkey -in dhkeyALICE.pem -text -noout
+// Alice extracts the generated public key
+openssl pkey -in dhkeyALICE.pem -pubout -out dhpubALICE.pem
+// See Alice public key ...
+openssl pkey -pubin -in dhpubALICE.pem -text
+
+// Bob
+openssl genpkey -paramfile dhp.pem -out dhkeyBOB.pem
+openssl pkey -in dhkeyBOB.pem -text -noout
+// Bob extracts the generated public key
+openssl pkey -in dhkeyBOB.pem -pubout -out dhpubBOB.pem
+// See Bob public key ...
+openssl pkey -pubin -in dhpubBOB.pem -text
+
+
+// Alice will compute the key derived from the DH agreement
+openssl pkeyutl -derive -inkey dhkeyALICE.pem -peerkey dhpubBOB.pem -out
+secretALICE.bin
+
+// Bob will compute the key derived from the DH agreement
+openssl pkeyutl -derive -inkey dhkeyBOB.pem -peerkey dhpubALICE.pem -out
+secretBOB.bin
+
+// We van now compare secretALICE.bin and secretBOB.bin
+cmp secretALICE.bin secretBOB.bin
+// See the contents
+xxd secretALICE.bin
+xxd secretBOB.bin
+//
+od secretALICE.bin
+od secretBOB.bin
+
+
+

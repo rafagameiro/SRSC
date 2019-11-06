@@ -1,0 +1,85 @@
+//
+// SRSC1920, hj
+// About Validation of X509v3 Certificates and Chains
+//
+// =============================================================
+// 1)
+// With your browser inspect X509v3 certificates
+// For the purpose you can use an HTTPS site
+//
+// See and identify the status of each certificate in the chain
+// inspecting the certification fields identifying the attributes 
+// and their values.
+// 
+// Inspect the fields and attributes classified as CRITICAL
+// =============================================================
+// 2)
+// Try to think on what must be validated when a X509v3 Cert Chain
+// is received in a protocol
+// =============================================================
+//
+// 3)
+// Pay attention to colors in your browser (URL)
+// Try to identify the meaning of colors (user awareness control) 
+// When the HTTPS session is established with the support of TLS and
+// the type of certificate of the server endpoint.
+// Discussion: difference between EV certificates and not EV certificates
+//
+// =============================================================
+//
+// 4)
+// 4.1) Try now to obtain a current CRL from the respective endpoint of a
+//      given certificate. Download it !
+// 4.1a) If you dont use your browser you can also use openssl: 
+//      openssl s_client -connect clip.unl.pt:443 -showcerts > clip.pem
+//      openssl x509 -in wikipedia.pem -noout -text
+// 4.1b) You can also download the URL with openssl
+         wget <CRL URI-URL>
+//
+// 4.3 Inspect the CRL format with:
+// keytool -printcrl -file <CRLfile>
+// or
+// openssl crl  -inform DER -text -noout -in <CRL file>
+// =============================================================
+//
+// 5)
+// We will see now how to validate certificates in OCSP endpoints
+// To do this, you can do this sequence to check for the wikipedia certificate
+// 5.1) Obtain a certificate
+// openssl s_client -connect wikipedia.org:443 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p'
+// openssl s_client -connect wikipedia.org:443 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' > wikipedia.pem
+// ... we can see the obtained PEM certificate
+// openssl x509 -in wikipedia.pem -noout -text
+
+// 5.2) Check if the certificate has a referenced OCSP URI
+// openssl x509 -noout -ocsp_uri -in wikipedia.pem http://ocsp.digicert.com
+
+// 5.3) Let's go to obtain the entire chain
+// openssl s_client -connect wikipedia.org:443 -showcerts 2>&1 < /dev/null
+
+// 5.4) Now we will submit the chain to the OCSP endpoint
+// openssl ocsp -issuer chain.pem -cert wikipedia.pem -text -url http://ocsp.digicert.com
+
+// 5.5) Can also obtain a more sinthetic OCSP response...
+// openssl ocsp -issuer chain.pem -cert wikipedia.pem -url http://ocsp.digicert.com
+
+// For a revoked certificate you would obtain somethong like ...
+-----------------------------------------
+Response verify OK
+test-revoked.pem: revoked
+This Update: Apr  9 03:02:45 2014 GMT
+Next Update: Apr 10 03:02:45 2014 GMT
+Revocation Time: Mar 25 15:45:55 2014 GMT
+-----------------------------------------
+
+// 5.6) Try to query a wrong OCSP for the inspected certificate
+// example:
+// openssl ocsp -issuer chain.pem -cert wikipedia.pem -url http://rapidssl-ocsp.geotrust.com -text
+
+// 6) Summary
+// Discussion on the validation rules for certificates chain validaton
+// Discussion in LAB
+
+
+
+

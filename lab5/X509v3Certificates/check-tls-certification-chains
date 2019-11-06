@@ -1,0 +1,26 @@
+//
+// SRSC 2019/2020, hj
+// About checking X509v3 certificattes and chains in TLS connections
+//
+// Use of openssl for simple (initial) debug of TLS connections
+// and to inspect certification chains
+// See also the chains with your browser and web inspection tools
+
+1) Examples for discussion (also using the browser in parallel)
+
+openssl s_client -connect clip.unl.pt:443
+openssl s_client -connect clip.unl.pt:443 -tls1_2
+openssl s_client -connect www.gmail.com:443 -cipher "EDH"
+openssl s_client -connect www.gmail.com:443 -cipher "DHE-RSA-AES256-SHA"
+openssl x509 -in google.pem -text -noout
+
+openssl s_client -connect clip.unl.pt:443 -showcerts > clip.pem
+openssl s_client -connect clip.unl.pt:443 -prexit -showcerts > clipchain.pem
+
+openssl s_client -connect google.com:443
+openssl s_client -connect www.gmail.com:443 -cipher "EDH"
+openssl s_client -connect www.gmail.com:443 -cipher "DHE-RSA-AES256-SHA"
+
+openssl s_client -host google.com -port 443 -prexit -showcerts
+openssl s_client -host google.com -port 443 -prexit -showcerts > google.pem
+openssl x509 -in google.pem -text -noout
