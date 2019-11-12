@@ -1,0 +1,11 @@
+// Remember also the examples in Lab5 (5.1 and 5.2)
+
+openssl s_client -connect clip.unl.pt:443
+openssl s_client -tls1_2 -connect clip.unl.pt:443
+openssl s_client -tls1_3 -connect www.google.com:443
+openssl s_client -showcerts -connect clip.unl.pt:443
+openssl s_client -host clip.unl.pt -port 443
+openssl s_client -host -state -host clip.unl.pt -port 443
+openssl s_client -host -debug -host clip.unl.pt -port 443
+
+
