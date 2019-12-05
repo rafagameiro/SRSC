@@ -1,0 +1,11 @@
+// To run ...
+java URLGet <url>   // can use with HTTPS URLs
+java SSLSocketClient 
+java JavaHTTPSExample <URL>
+
+// to run and debug all of the TLS trace, ex:
+java -Djavax.net.debug=all SSLSocketClient
+
+
+// To obtain the certificate in a HTTPS servef connection
+openssl s_client -showcerts -connect clip.unl.pt:443 | openssl x509 -outform DER > clip.der

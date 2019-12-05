@@ -6,7 +6,73 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01e9c141-f563-44ba-a058-839c6d109a38" name="Default Changelist" comment="" />
+    <list default="true" id="01e9c141-f563-44ba-a058-839c6d109a38" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/IVBytesExperiment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/IVBytesExperiment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/teste.jceks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/1-URL/JavaHttpsExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/1-URL/UrlGet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/4-OPENSSL/check-ciphersuites" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/4-OPENSSL/check-ciphersuites" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/4-OPENSSL/openssl-tests" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/4-OPENSSL/openssl-tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/4-OPENSSL/some-openssl-commands" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/5-SimpleTLSwithJSSE/ReadCert.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/5-SimpleTLSwithJSSE/ReadCert.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/5-SimpleTLSwithJSSE/SSLSocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/5-SimpleTLSwithJSSE/xxx.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/PrintCert.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/TLSClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/TLSServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/TLSTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/client.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/clienttruststore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/server.crt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/server.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/6-TLS-CODE-JavaJSSE/serverkeystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/SSLSocketClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/SSLSocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/SSLSocketClientWithClientAuth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/client-auth.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/client-nauth.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/client.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/cliente-gere-certificados" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/clientkeystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/clienttruststore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/server.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client/servertruststore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/SSLSocketClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/SSLSocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/SSLSocketClientWithClientAuth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/SSLSocketClientWithTunneling.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/START-CLIENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/cliente.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/clientkeystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/clienttruststore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/client1/server.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/ClassFileServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/ClassFileServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/ClassServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/ClassServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/client.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/docs/image1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/docs/image2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/gerir-certificados-de-clientes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/server-without-client-auth.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/server.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/server.run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/serverkeystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/servertruststore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server/servidor-gere-certificados" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/ClassFileServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/ClassFileServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/ClassServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/ClassServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/START-SERVER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/cliente.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/server.cer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/serverkeystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/7-AnotherTLS-EXAMPLE/server1/servertruststore" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,6 +187,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -203,17 +269,17 @@
       <updated>1572613645190</updated>
       <workItem from="1572613653994" duration="442000" />
       <workItem from="1572636378330" duration="9068000" />
+      <workItem from="1575290329071" duration="605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9510000" />
+    <option name="totallyTimeSpent" value="10115000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
+    <frame x="9" y="23" width="1902" height="1048" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2524013" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25512406" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -249,13 +315,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/secureProtocol/Config/SMCP.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MulticastChat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
@@ -277,6 +336,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/secureProtocol/SMCPSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="464" column="15" selection-start-line="464" selection-start-column="15" selection-end-line="464" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/secureProtocol/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
@@ -284,10 +350,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/secureProtocol/SMCPSocket.java">
+    <entry file="file://$PROJECT_DIR$/src/secureProtocol/Config/SMCP.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="464" column="15" selection-start-line="464" selection-start-column="15" selection-end-line="464" selection-end-column="15" />
+        <state relative-caret-position="195">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
         </state>
       </provider>
     </entry>
