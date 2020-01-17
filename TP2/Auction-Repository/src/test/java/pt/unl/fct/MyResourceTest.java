@@ -9,17 +9,22 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import pt.unl.fct.impl.SecurityHandler;
+
 import static org.junit.Assert.assertEquals;
+
+import java.security.NoSuchAlgorithmException;
 
 public class MyResourceTest {
 
     private HttpServer server;
     private WebTarget target;
-
+    
     @Before
     public void setUp() throws Exception {
         // start the server
-        server = Main.startServer();
+        server = Main.startServer(false);
         // create the client
         Client c = ClientBuilder.newClient();
 

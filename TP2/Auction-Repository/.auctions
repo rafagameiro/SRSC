@@ -1,0 +1,385 @@
+[
+  {
+    "UAID": "8a3b3301-6ce1-4dda-8e55-210065c5c167",
+    "bids": [
+      {
+        "author": "testeUser",
+        "bid": 10000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 4000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 120505.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 25333.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 30000.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45005.0,
+        "selfHash": "cdf5fad191a16c85621a6d5ab1c6a4b633174b71d703a96f26bd03ed5a8ef",
+        "combinedHash": "8cc45fdf1f51e3be62528203fec9ae09c9ca9914d6722db960946e2958f29e"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45006.0,
+        "selfHash": "343abd5d838bf854889f952467e9d9ce925ba979848e01417f08c29d0803e2b",
+        "combinedHash": "f9f785e1b6a614d71f684ee43b88c8652f6949a9e2587e2a42523b2823333"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45009.0,
+        "selfHash": "fa31377fd74790207cc0022e3fe0ca6c7107a8730928a825b059a957a87f626f",
+        "combinedHash": "b67a81fc4c0e32e3706ba133e228a458c1fb9f452d2a430be7c2212b0f5bd345"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45010.0,
+        "selfHash": "722d674fea8ee9cd124a257aac980b508a8871d8647d13db1b26ed33fb90c379",
+        "combinedHash": "cc732a15c8a3a9b83db540a145a1d6dc4c37ae80c5fff75fee5f2eab9f52f187"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45011.0,
+        "selfHash": "8cf15dd2f786161f8245bb9fa2a3584ce37c0cbe13bb0ae59955815cb14fd815",
+        "combinedHash": "3ded42f1e329368f7c1ea6ddeba20b5eb6481d7a19eebff506659563da4e1a2f"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45012.0,
+        "selfHash": "8cd90ee5b792d2bbb27f9a44ceff14b93f81b08c8459713169caf28b7fd0c65e",
+        "combinedHash": "72301865d4537d6999ea81740a1c300836206f00c7c19b50259d5f084d9d98a3"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45013.0,
+        "selfHash": "5bc67176942b27dec1dd88d8cbb329d50b0fbbeb19a5bdfc0e4249986d05b7f2",
+        "combinedHash": "03c15c6315bf4eaea482cae6bd18bae488352f0a1550b2b18ff6e7ad4a90e59e"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45014.0,
+        "selfHash": "6304b65a4e62b66afe213801117844c6871f9625d6aa8f92013e40e8b3773cd2",
+        "combinedHash": "a98a86e76f384341f2657dcfc5d19c5c56dfb3c7dca08b9877befa28c31bd123"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 45015.0,
+        "selfHash": "bdb89302b40671300e99f151a24f7af42a31ac37af9a4123432127be8d65326a",
+        "combinedHash": "3f6553920082dfad37da3ba7dacfb64210ab26ad1454f5933bcdec612a857bc9"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 80000.0,
+        "selfHash": "f67ef89119a2cdc6dfee0536374e4039d8c8b4d8c1e6af3e09bf885853fe4eaa",
+        "combinedHash": "7f4a4d484c410b223ba9ab55246cbee3d4fc86fc68683c67893b674eb67a6cb2"
+      }
+    ],
+    "name": "Auction For Test",
+    "description": "test bid",
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "time": "21/09/2019",
+    "type": "English",
+    "isOpen": "true",
+    "highestBid": 80000.0
+  },
+  {
+    "bids": [
+      {
+        "author": "testeUser2",
+        "bid": 2000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 700.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 80000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 55000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 7777.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 74444.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 500.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 501.0,
+        "selfHash": "d6e8d8c2d60c955ffeeb077963691b289fb7bddb03d69e95084c4bc30c277288",
+        "combinedHash": "ab4030b46f100389781ab77f55f5a3c04c3391a32e0c7d9bcda2c07e191b054e"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 600.0,
+        "selfHash": "1be7075fe8ccb2088b7b96c196e71191296c21e090e572d3a426f353ce0ff9ad",
+        "combinedHash": "7408c593982362a000421d057db9a8b9e0f43f5b70dd47929a0dee78d2db6878"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 600.0,
+        "selfHash": "1be7075fe8ccb2088b7b96c196e71191296c21e090e572d3a426f353ce0ff9ad",
+        "combinedHash": "c30b582f7f673111db49d16daea63cefbdcfd6a8ab8b353ab17f7ea4752c1f69"
+      }
+    ],
+    "UAID": "7b1795ba-0f30-44e4-b583-468c2561b1af",
+    "name": "Ola",
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "description": "Apenas um simples testes",
+    "time": "23/12/2019",
+    "type": "English",
+    "isOpen": "true",
+    "highestBid": 600.0
+  },
+  {
+    "bids": [
+      {
+        "author": "testeUser2",
+        "bid": 4000.0
+      },
+      {
+        "author": "testeUser2",
+        "bid": 12000.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 12001.0,
+        "selfHash": "140e8c3b24c937b4f69ea714525d8a8ca0c6731b7ca688cdb67a24f2e2d11e21",
+        "combinedHash": "15ea7f0c3ed7ba0427eaf7803023d411f9c0dcc9a958b3a799c79012aac5e55e"
+      }
+    ],
+    "UAID": "415d4b63-b5fd-4dc0-97e4-29fb139a71ab",
+    "name": "Nova auction",
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "description": "Novíssima",
+    "time": "07/22/12",
+    "type": "English",
+    "isOpen": "false",
+    "highestBid": 12001.0
+  },
+  {
+    "bids": [
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 200.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 220.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 250.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 455.0
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 500.0,
+        "selfHash": "46abe6418c87a5f68d3a352c922e5d2f709e7c608e23694bc7451012661e6a15",
+        "combinedHash": "a986724e3470ef07e2656ddad471b2b33958e951561f1720e86d0023312b3a6f"
+      }
+    ],
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "UAID": "9d2d8369-0aaa-428b-a01c-b34b0e2ce6e3",
+    "name": "Benfica",
+    "description": "Benfica é o maior",
+    "time": "26/12/2019",
+    "type": "English",
+    "isOpen": true,
+    "highestBid": 500.0
+  },
+  {
+    "bids": [
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 10.0,
+        "selfHash": "94d9a824104a2927506598dbb60c900b9e1c79c21c721ebf2cf0784de7c6facb",
+        "combinedHash": "94d9a824104a2927506598dbb60c900b9e1c79c21c721ebf2cf0784de7c6facb"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 15.0,
+        "selfHash": "cf1030db0186ff37195b0b522ba8648e76a920a4e6d68f661a7cbfa4f447d674",
+        "combinedHash": "829dce5a936caa28ebce664b828c2a18471ed9c2e99eee1d523dde96d9d117cc"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 17.0,
+        "selfHash": "761d0d95e3e9cc9bf165a53f88ee5f54f06e0d0043f617c49955575f0a024bc1",
+        "combinedHash": "e6b278d0c7d7fb7edb7f438c16c29ebd10eb11e657f814e60e07bb8a5e41cd77"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 18.0,
+        "selfHash": "79aac04a3c89aa84ebc79037e94a71dae931bbc52e37262821aefb890f0e3890",
+        "combinedHash": "addab18f6cb94d5425908bc95e9705fbf346d5a01e3b6cb789615b9650db5f95"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 19.0,
+        "selfHash": "836600667f391cd1ba290a8ae187163e85b44b969bb4a5431215940a66a97dfb",
+        "combinedHash": "990e29798524e91f3321a5f5bb7e56c75bc34b1e5efb8c6e287f6af29c32b795"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 20.0,
+        "selfHash": "251a90f174b5c575d4536bda19bfc55cb7f8a57164fb0382738adce6b7dff9a3",
+        "combinedHash": "ccb28bc5651f1c444aa9d71839ba0bb2a2fa43a52b5a5d9492a82aea93842dca"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 21.0,
+        "selfHash": "d7be92fb05f048855517ba543688cae0ad377d12cff3ad402b3e4973de9fda99",
+        "combinedHash": "242c21143dc082832386e355845c05a750085c9f1e8c2059c594ac82dd91d18c"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 22.0,
+        "selfHash": "83ba1ad051aff8e1f4fafac21ef74944a6431553bcbc864c71c9218ae00126f2",
+        "combinedHash": "9a41b323888ed0952c7bfc596a84cf406c65839ff631abda6796874194c2d65d"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 23.0,
+        "selfHash": "dec1f8e72101b970fbb3697fd6e66259c829bed9659b69b6e9fb82c8b6ac2e11",
+        "combinedHash": "573f2773a734be84f32cc37400a4d4ab5d34035dc123070f2f0ab7e02f32314d"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 24.0,
+        "selfHash": "4869f3be6bb7b8ebd536e6a0db6627a287a027a5b175cb5bfabcdcaec6f4e7b2",
+        "combinedHash": "5eed11cc24b7c933d0d421b2eb0e281cb3019ad8655c103f2fd8b67bda762657"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 25.0,
+        "selfHash": "76242a25e6e8c80b717e2b03ba375df2a51148f6afb1797b87d8361b4fdcb46e",
+        "combinedHash": "a8842aee2f9a3b85c71ca7de234c7be76658bf319278869fe3751f29a9ca6aca"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 26.0,
+        "selfHash": "ce43c049dc8ac1964991833fb3bc83a42947b55ed12b5516f1ce772fbf6968d6",
+        "combinedHash": "d51acf0687c90a11032c68cc941b48fe17e802feecfc89bc2f3e83bfa9fb16dc"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 27.0,
+        "selfHash": "b087b583183f57be21c43e06d4ebbed853594c3c60ea9b9ce06235054d1f51b3",
+        "combinedHash": "c9b7ddfb47535ed728a43386e7e56514e2825e41ae1f9eb5e8ca56c9feffcdd1"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 28.0,
+        "selfHash": "fd810e49c693f74c09c6963109795557de7f480355de112e0de8181e92c78deb",
+        "combinedHash": "cb8daf038d967321a88ab17d435b7afc2426bd49df797d30c53b0b77c9956a85"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 29.0,
+        "selfHash": "4020a7eb2fa04f854255a17efb51bf83ddb4df3b0c88dbbec6c63e7a04bcb810",
+        "combinedHash": "82749dd8b5ce31877876e866fc4c661df0913750dfa1116d3f2957f1e0d9e5aa"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 30.0,
+        "selfHash": "5fd22b5e4f26f160c86c651afdc32f1b498afd7c51d1cb1358892e4bf5ed4598",
+        "combinedHash": "0001fe461b7b3212599171a360fa9153b2a393a00507389cba85ca59a431e3d0"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 31.0,
+        "selfHash": "b1232d5bf1341c30ac2bd8fabe9d652d960fae6cc32ac69372d453b9996ef5a6",
+        "combinedHash": "2ae5404e2e4065c2787dee886dc613ae65f168bd99d7b0f0d5b723d8487dcf68"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 32.0,
+        "selfHash": "0d2aaa380703e72d568796ce80dd51c7d0b4d19344ebb8795b0191d6aa5fb0fa",
+        "combinedHash": "ddecafec772232612913ae2f106e29c2bb5693db76c0df28137b9811c8472add"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 33.0,
+        "selfHash": "fe4ccbc2372874975a6aff5fed6310b2ca950255632d36fb09f0be4faf25acf6",
+        "combinedHash": "2794366aa398fea33cb3539152bfdad35f8e6a46b1991c34ce8f066e197e5374"
+      }
+    ],
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "UAID": "97ea8aa9-e782-4e46-a64d-d5e8daef1a89",
+    "name": "Thinkpad",
+    "description": "Niiice",
+    "time": "07/02/1990",
+    "type": "English",
+    "highestBid": 33.0,
+    "isOpen": "false"
+  },
+  {
+    "bids": [
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 40.0,
+        "selfHash": "fa5e2df075a6a503f5433592e45f6193a4e86f28d52fbe9aeecb721063879953",
+        "combinedHash": "fa5e2df075a6a503f5433592e45f6193a4e86f28d52fbe9aeecb721063879953"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 14.0,
+        "selfHash": "f619c0de967d8b9324576cc2e2658416b534e53d4c8d16564e0ef9856fa76da3",
+        "combinedHash": "977c048a948ddcbf573509a792ca3128ff9e858f737d467a7345a971ea90b00d"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 144.0,
+        "selfHash": "09e4f94b8ea18de77fed564f396866137fbf7aca0d679002763bd40958fd6064",
+        "combinedHash": "7cbd11abf5ff156890616add8f843baf93c8aea89f6a0390d6b9c1367ebf2ef1"
+      },
+      {
+        "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+        "bid": 22.0,
+        "selfHash": "83ba1ad051aff8e1f4fafac21ef74944a6431553bcbc864c71c9218ae00126f2",
+        "combinedHash": "ae862bcdaf19b5e92f605d3aea58d1a8294558bf1ea9386013215ee25759c5f8"
+      }
+    ],
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "UAID": "89ff672b-f35e-482f-ab59-f1003102c6f4",
+    "name": "Fancy Car",
+    "description": "very fancy",
+    "time": "01/02/2020",
+    "type": "Blind",
+    "highestBid": 0.0,
+    "isOpen": "false"
+  },
+  {
+    "bids": [],
+    "author": "c36ecada-e48b-4d15-9728-eff7538a4b56",
+    "UAID": "c6272b02-d861-4bd9-82b2-5c508b392328",
+    "name": "A mais nova",
+    "description": "auction",
+    "time": "01/05/2020",
+    "type": "English",
+    "highestBid": 0.0,
+    "isOpen": true
+  }
+]

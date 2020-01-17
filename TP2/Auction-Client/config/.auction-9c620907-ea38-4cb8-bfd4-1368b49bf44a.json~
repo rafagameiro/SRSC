@@ -1,0 +1,415 @@
+{
+  "bids": [
+    {
+      "author": "edge",
+      "bid": 11.0,
+      "selfHash": "580cf86498320cc96a98e3350530eb3ab2b767d147596537af6fde344e6f1958",
+      "combinedHash": "f0d2b10dbecb244c943a2ffd8e9759f5309acee339aa84d2b647f277bd6f0940"
+    },
+    {
+      "author": "edge",
+      "bid": 12.0,
+      "selfHash": "af282d8ea4f66d1a96835ee076c16fed2034f8748eda33d3756df4da029e75e3",
+      "combinedHash": "b88a0dd438ac6597ab563176c7c998bcdeedc4e8914b15a7d9f1f50343bff558"
+    },
+    {
+      "author": "edge",
+      "bid": 13.0,
+      "selfHash": "8722d2ae5035dc94128db881f8a151c0f06778b906198aa556223c301767981d",
+      "combinedHash": "6e9f8bed36f3e5182d432192a32ff7f2e48552020196f663774c728c56f0db9a"
+    },
+    {
+      "author": "edge",
+      "bid": 14.0,
+      "selfHash": "76455c2f7fdb89a346c087a1fa2c8077cd61905534d2f5a6ab08a68b64e646c5",
+      "combinedHash": "2fb7e9372f03b2ebd9cab6149762bd174aea9154b5b7c057e93be5688f15e91b"
+    },
+    {
+      "author": "edge",
+      "bid": 15.0,
+      "selfHash": "18c9492ddff44ac1d7561aeb86bfb6166c5e5f258e01c80380edef1c1feb6ce4",
+      "combinedHash": "5e076c2050fb6cec8c59e59708bdbd5529a2b869b9d201dcbc6de38f4d95e7a7"
+    },
+    {
+      "author": "edge",
+      "bid": 16.0,
+      "selfHash": "4f3f51e82dd70538d7c8a9844abdd436452bdf2b9b358a87d429f51a7f40772e",
+      "combinedHash": "704fc213efa19270d628f5cbe6b24e77b6aabb9c465cc42fe3beabc36e314267"
+    },
+    {
+      "author": "edge",
+      "bid": 17.0,
+      "selfHash": "8be3d08ea3cbef904c806a16ad102e8e6ad06f437a82625cadb62f6a1305aab8",
+      "combinedHash": "4bff2021827c091b0f9fbc42f42ba058a65f82f24bd2a30671195b63154b3cf0"
+    },
+    {
+      "author": "edge",
+      "bid": 18.0,
+      "selfHash": "e97c2606eae95e6758526ae0a33d72e66e7c52f27b56f1cebbd5a9de1a014271",
+      "combinedHash": "b4cfc76814a5d38dc684ce2f7bc8640d31941a42de3fed78e60f6681d1e3c376"
+    },
+    {
+      "author": "edge",
+      "bid": 19.0,
+      "selfHash": "9073a63ad3654192fa6d606a8b737873b3a605ff0843260e35a871972adf5e0a",
+      "combinedHash": "43d8f0e3d5153ca0e693fdd437a351f3b2d16bcb0ca2e4d1c7a9469fb3316cf6"
+    },
+    {
+      "author": "edge",
+      "bid": 20.0,
+      "selfHash": "7da8e55bcf2164042cfa4549b22c49fb404ddcea9a97cce2e0b8a7d46702c340",
+      "combinedHash": "6bdf5ceb488bf3f1f9b316244435494d1d65764e90863559256761c0e1efb136"
+    },
+    {
+      "author": "edge",
+      "bid": 21.0,
+      "selfHash": "f8bb8bf56abe10d9e829a010a6c8853b63e9d00b00365d04c6e3116ea56a889b",
+      "combinedHash": "d6dbd9bdcc27692c8550f1040c71dcb5a0c60d26aa7cf1a3488d8430640fc9d3"
+    },
+    {
+      "author": "edge",
+      "bid": 22.0,
+      "selfHash": "78f2e314305f3062b7c8d0ca8cc97f777adc27b7d1b962eb21e6dd39b8d3d0c3",
+      "combinedHash": "a68dee4173b28b9151debd5953894755272f434b7b2757c34a9345acf24ac291"
+    },
+    {
+      "author": "edge",
+      "bid": 23.0,
+      "selfHash": "ad348065f941e96936cd871d3b24fa187c6966b738ced13c68929474a43ce510",
+      "combinedHash": "fddd0d60c6a0744bb7de853fef30cc8727f25b9b3ee1184f628efd1441540bf4"
+    },
+    {
+      "author": "edge",
+      "bid": 24.0,
+      "selfHash": "f98a84957cf50daee4c40bee6853e820afb2de2ab20ce5db970711f1170a3055",
+      "combinedHash": "3c3038fe4350cd51d70fae01986bddd0d7fa9965405d4866b2728deb9776a896"
+    },
+    {
+      "author": "edge",
+      "bid": 25.0,
+      "selfHash": "ee5f3bffbdb2be7b14fc6f95ccc4e1f240a0ddfe5e309013e28aafb9b2a8548e",
+      "combinedHash": "1cbe3b22fb453afab5a148adfac7d16bdfca1f82783eaf5a201f615209dd1d29"
+    },
+    {
+      "author": "edge",
+      "bid": 26.0,
+      "selfHash": "fd120a9eb7752ad78bebd053a9cc5dca06510c3482070f5578883e4d3bf32d20",
+      "combinedHash": "142f2512059b16fe11903a36797a892158a98727e5eafb5904e0c4217e648f1f"
+    },
+    {
+      "author": "edge",
+      "bid": 27.0,
+      "selfHash": "eaf6eca92569cc9db05509ae1074639ff5fb18f57f78adb7bdea618503ab653c",
+      "combinedHash": "dd76c102e55643d3442db5968af1f1840d528f7feffef05bbf6581c16de865ec"
+    },
+    {
+      "author": "edge",
+      "bid": 28.0,
+      "selfHash": "cc07a32c5ae936718321df4e5b66ee60c5f68f3fb24c9f19442f06be98b17e33",
+      "combinedHash": "edcd2f85dcc5e8df66981303c8d7ee040d20caaf9899dc4dc48d8909e430794e"
+    },
+    {
+      "author": "edge",
+      "bid": 29.0,
+      "selfHash": "cbeb8e01ab6690ee526a1b175e014e335983b0e11139efc2cb1e0198626bd116",
+      "combinedHash": "abf7323860c3ba815e4b94d974dc92850f828169a23623d87b00e77c75cfe222"
+    },
+    {
+      "author": "edge",
+      "bid": 30.0,
+      "selfHash": "9c9cd73cc56c44513961c4f1a6227f436919bb9616757732b1ca513e90879e22",
+      "combinedHash": "9b97c446ef7bd308de82b0b8a42712a62a10836607431335a1b8376bf8d45a20"
+    },
+    {
+      "author": "edge",
+      "bid": 31.0,
+      "selfHash": "2c5a382f7a8fd86cd79916772aeb3a9aabe741fa95794794db7787792e87abb2",
+      "combinedHash": "a7eb825bf38878fd875512145200d7dee3621e7dfaca73a57c8a52a6cf3b0ad7"
+    },
+    {
+      "author": "edge",
+      "bid": 32.0,
+      "selfHash": "2917c1a4eaaba1d52e11bbefaf9ea6c0655c93c87492d860584c2ddfade4d3bf",
+      "combinedHash": "a0ec96828aae49c3f24f8eb8a71dc82730dee87cc42c0429462a394f4b2278cd"
+    },
+    {
+      "author": "edge",
+      "bid": 33.0,
+      "selfHash": "16537fa36d014775618ec3de7b6f973602abd31db604db2d2b1518af289b6b7e",
+      "combinedHash": "617cd81348ec58d60687fb0707dda7576ba50978bf373eabd457970c20139fae"
+    },
+    {
+      "author": "edge",
+      "bid": 34.0,
+      "selfHash": "eb581a509dba4235b963f4df56af2a2765205d5214a20d11bef3e29c95549e68",
+      "combinedHash": "ffcff2e10f9c1aad39bf3427d473701ec1d59886a27ec0c8ee3b74d67873b3a3"
+    },
+    {
+      "author": "edge",
+      "bid": 35.0,
+      "selfHash": "a6e7bc71b378f0775873f8adccac6c859db98acd28de3ff0db26ea067f91e170",
+      "combinedHash": "cd36c9e4c6f3c0c1de5158cf0adc4e507e6bda9a1e183af7b33b4886fa3d606d"
+    },
+    {
+      "author": "edge",
+      "bid": 36.0,
+      "selfHash": "4e8d05c85701a697889015e436d8af49e1b05456e4968b0f961995553c151126",
+      "combinedHash": "a270cf06d81644114db49429526deaf56b8b276110b2e040a8883d07405df025"
+    },
+    {
+      "author": "edge",
+      "bid": 37.0,
+      "selfHash": "8dc1e7f8842eda20e5696f726953d24f7d5dc1bb1f8d58acdd50ac17e63b62f5",
+      "combinedHash": "16ceeca5126f2a9f7ed148e57c81643ec23e35f15f178275b1adb43b2adc9104"
+    },
+    {
+      "author": "edge",
+      "bid": 40.0,
+      "selfHash": "dccc044e84c6b31c11ae90a01d0050a46c86d735f7dbaf9b1e097ed0b70a3cf5",
+      "combinedHash": "be6607b999caa2ca145177a423d8b479f3a89ec2e036bf317b4e6657fe316c20"
+    },
+    {
+      "author": "edge",
+      "bid": 42.0,
+      "selfHash": "eec442868dca4e4dacdb237ed83fb9b113360cc44ae72dfe17d52ebc21860685",
+      "combinedHash": "f6e40e9c420aa0c89ca9d0ea11d39a3e73a27d6135adbb60dcfd293219f80aed"
+    },
+    {
+      "author": "edge",
+      "bid": 43.0,
+      "selfHash": "d828a642a56499014f3eeb497fa75e20728d24d3f31f59083650af7414836b3d",
+      "combinedHash": "446c3891b543b83a95eff9119ddd419de1e262d875b95a8b84571dc4945a5bc7"
+    },
+    {
+      "author": "edge",
+      "bid": 44.0,
+      "selfHash": "89dd6582e489abc24074b65f878eaa4251192f7effdab67bcb8e8786f44d1041",
+      "combinedHash": "2476ac84695ab54e9b930e3b50370569e87857836d43ee4334e6a7097e2a6bdc"
+    },
+    {
+      "author": "edge",
+      "bid": 45.0,
+      "selfHash": "84224f1f6c10b45d72659c8775ef695a00bba7c56fa3f3cbc87d22a5e4fcde88",
+      "combinedHash": "bd258f060d24f9f4099b31c5eec300de48096631d9b674f9669b4d0333327462"
+    },
+    {
+      "author": "edge",
+      "bid": 46.0,
+      "selfHash": "14d11842d1055bd069c07ea2141c8684c3e44db2b354c3c5e6754465a2767902",
+      "combinedHash": "a5c4569ebd86e380a7349e35339bb69558e52f226c5e8229527ea75518b004ea"
+    },
+    {
+      "author": "edge",
+      "bid": 47.0,
+      "selfHash": "5656114ec5e7ae60829d87bd4fb5cd8fd70ab5fb3e3290c1c595ee256f750210",
+      "combinedHash": "216abcb81e518205b82b6936eb7e9d1d324fc62db64d53f299b3581b97f9507d"
+    },
+    {
+      "author": "edge",
+      "bid": 48.0,
+      "selfHash": "f5e893e77f9dbf8dbf387829f3adac819f72dbd75d9c7e96d30054674cc2ee6b",
+      "combinedHash": "0f1758a4cb03ee9207a1e06327ba87ea41fa16348f6bff09400b46c9c1c4768e"
+    },
+    {
+      "author": "edge",
+      "bid": 49.0,
+      "selfHash": "3eabf4fa8a130df63af301aca66f123b4442312faa0119eafec78cb2529cae0e",
+      "combinedHash": "c3c5cbcca4c7f24d22abe8de7cf475df9af294384a79ceaab2c37ca969fc8720"
+    },
+    {
+      "author": "edge",
+      "bid": 49.5,
+      "selfHash": "28ecee90d676e2e2485e49048c29c21e33595c2c8b77b88843096c9c3feb543d",
+      "combinedHash": "7db25ce3f90648c18118c7e53524fc6d8d13ad41b05cdbe47f50ecbd698bca1c"
+    },
+    {
+      "author": "edge",
+      "bid": 50.0,
+      "selfHash": "65e8598f86c0a04aa11eefec9954d0a3f9c574d7b1d117c2a3edde05f858b4e8",
+      "combinedHash": "9e3aadd4bd8bd251ea85db3f4be5cbdbf908b073033388130e208a1679274595"
+    },
+    {
+      "author": "edge",
+      "bid": 51.0,
+      "selfHash": "7566d8d9802604cb51614e45cfe971d014e9b11c31d4b80992397691fdb38984",
+      "combinedHash": "ab31600dec2f16fc414081169c659cf8fb01128f5968c805713a5646f68a6d13"
+    },
+    {
+      "author": "edge",
+      "bid": 52.0,
+      "selfHash": "7fb1353f97a07c6b22ab4835fd8cd7c30458e7234358e757a8fd3b4e7217d87a",
+      "combinedHash": "71bd4d990c66e623f871f236cd6156c3f555346ccbeab7486f347d066105e1c9"
+    },
+    {
+      "author": "edge",
+      "bid": 53.0,
+      "selfHash": "d7115bbc901ab113d0d50b59de54358ac73ef8dcad545a9c65504466598960e1",
+      "combinedHash": "fa405504902a09282003f03ed69b77cbc062e246c8b2b00e156a9789b126776a"
+    },
+    {
+      "author": "edge",
+      "bid": 54.0,
+      "selfHash": "cd25159d8029c2882347e5549e72be8c2400b119dd387a3556d21c7f97134ee8",
+      "combinedHash": "91ec987b7535d7253e482e45e5b5bef5630307c62a2dea89abd51480ddd1578d"
+    },
+    {
+      "author": "edge",
+      "bid": 55.0,
+      "selfHash": "b74c3e9ba0a707c5e499cb68ee4a9d64be6acfdce2b92ef3594d5ee89f0d8c92",
+      "combinedHash": "fe03ba83cb9bb92e1b590553d52cd90e98d4fc003a3851ef3cf34c6a1e97b4bd"
+    },
+    {
+      "author": "edge",
+      "bid": 56.0,
+      "selfHash": "a395f0a1c116026bf261e255594ba26cf5dad4973e1a626036ee71e7ddb4f5fc",
+      "combinedHash": "4d53964eb11d0cec28ad009247b660f1bd4300f457e8bc8bc6c7706407d26634"
+    },
+    {
+      "author": "edge",
+      "bid": 57.0,
+      "selfHash": "3860d4564db269411a061e89c382ad991a74fe19d293aeaaa1be6f7c8515e43d",
+      "combinedHash": "43e062f60364960f09095884cb717cd9fe6417d6ddbd945521232a5803724273"
+    },
+    {
+      "author": "edge",
+      "bid": 58.0,
+      "selfHash": "af054f31421a480000d262b0e09625fadc0a610c0b714b0be39e21c1f568f2d3",
+      "combinedHash": "11c700e36a3e69ead8cb377d26eebc1a1ba51a45575a69b5bb41b7820e2babcf"
+    },
+    {
+      "author": "edge",
+      "bid": 59.0,
+      "selfHash": "32ddd00e5a00b4319a581ba4b9d739034db511e1e773165696ffa43ecb6a161b",
+      "combinedHash": "1c50396669a5c310a86cf5eecfc298a7cb6f42ae8489903c66eda0dd102247a0"
+    },
+    {
+      "author": "edge",
+      "bid": 60.0,
+      "selfHash": "8e9b6c29ddbd2666ed52113407cab567ac7a5db3382c843a9b81b94d38ec982f",
+      "combinedHash": "7cd23d71808c7a38bda3d6489a621a0ea7de8b4b8f9f48151bf6df345fc606d3"
+    },
+    {
+      "author": "edge",
+      "bid": 61.0,
+      "selfHash": "b050d17ba3b987355c6c07e7030bb87242a531200034ebdc69981366b38d2d89",
+      "combinedHash": "8bcb69f25d95ceafa0aa50c3db7998105f94c152584805a7588f0200f1439270"
+    },
+    {
+      "author": "edge",
+      "bid": 62.0,
+      "selfHash": "7c100f5a1240bb32c5829c5dbf582efd3ba8ec8e9c370fce502aad374416d3cb",
+      "combinedHash": "239114b965542b55c3dedbf418acccc7dd09a4a39c17c9b6a317a4ecea8091b7"
+    },
+    {
+      "author": "edge",
+      "bid": 63.0,
+      "selfHash": "2dce0fb49bba830ce65177463a4afe263ac1083a419521b69d247cffc110df00",
+      "combinedHash": "fadfcf09fe32f84ec34b532b5fd7880b51ccbedfee419ea05367fad63b7c93ec"
+    },
+    {
+      "author": "edge",
+      "bid": 64.0,
+      "selfHash": "0b207c61bcdef974595d186433f368e12e68e068bfccbec4951920725e8f39fa",
+      "combinedHash": "212dfdfb8661730bc53b1e120fd829f93f5a9cbab9ae8b6a399bbbff080ca748"
+    },
+    {
+      "author": "edge",
+      "bid": 65.0,
+      "selfHash": "58462b53005ba8d54424fca585c1aca8160fca1f7dc00ddfaae3904a6e0553df",
+      "combinedHash": "4aab76888fafc6809ed3c29529c04012c500ce54b0aabb756f1d57220d1174b6"
+    },
+    {
+      "author": "edge",
+      "bid": 66.0,
+      "selfHash": "62ed281fc6477df2c9bedb3244cd5d6060ca0d5cf522650f26f1e16dfe760ee9",
+      "combinedHash": "643d0e5b3a392219fa0790a67592cb5a6498729f624f4f864df8eaa1829480d9"
+    },
+    {
+      "author": "edge",
+      "bid": 67.0,
+      "selfHash": "814d52b5662045449dd1ab478bf803ab8439d5eb83dd781013aae238631c36ad",
+      "combinedHash": "2960f52f35af00f3f9cf0b25eca2e03e0ed7a5cd0ecf445d7a145fffa042571c"
+    },
+    {
+      "author": "edge",
+      "bid": 68.0,
+      "selfHash": "f8824dcd07d00c8367c15abd9b38c204e553551be4296f6ad086871647799b00",
+      "combinedHash": "a1e7946421292263dfc4d483882e2011662909ebd4664bb3c1e532c6bef6160e"
+    },
+    {
+      "author": "edge",
+      "bid": 69.0,
+      "selfHash": "0419da82670d364fa2eec41dfd04c72baab1548c6dd5f49b7b07fc8f62d19bca",
+      "combinedHash": "bb4d971e8a24302c92a8c3453b5b26d640893209c2e1dce4ffa82db70e7b9c67"
+    },
+    {
+      "author": "edge",
+      "bid": 70.0,
+      "selfHash": "df4714d539926e724e1479e4dd623278ae0bedf93614df844102283c772f6292",
+      "combinedHash": "19b49e984916ccbc95b903fee05f571d21913d3b5e77d0c166130a6731ff9853"
+    },
+    {
+      "author": "edge",
+      "bid": 71.0,
+      "selfHash": "13024b953ebab303b9f263cf8554d5c2df74e5dbe9cf5176ab1a91c1610386db",
+      "combinedHash": "e3fbd2566fdceb7d9e00214e7ec7eefa9cab3d121bf424cd09108d89b5a68b14"
+    },
+    {
+      "author": "edge",
+      "bid": 72.0,
+      "selfHash": "5106c60d3d7c193abbba781166a583cb570ae7949f3b00e084e2bd400a8f736e",
+      "combinedHash": "5c6bbec489c535387e4b0d63fbf3764d8d36fd99f383e51faf1e29003e00c4da"
+    },
+    {
+      "author": "edge",
+      "bid": 73.0,
+      "selfHash": "e508b5b387fb7a49f40d617e9fa69a2f3fbbbc02d7c134dc5367cfc0fcaf833c",
+      "combinedHash": "02efa603b37dd465093944f8a7ea879b4579c98b5df9eef19418b78855b06952"
+    },
+    {
+      "author": "edge",
+      "bid": 74.0,
+      "selfHash": "9a3952c67972994bb2ea55cde3b8d9fcc73a2af8cb8dc8fd23ad7a8fc61de685",
+      "combinedHash": "c3e0625654ae619e32af40ece3f794e2901abb0036ae64202af5e5d969c95d79"
+    },
+    {
+      "author": "edge",
+      "bid": 75.0,
+      "selfHash": "a05b7a751765d63ff77bf612e1e00fd1102e0b0219f10b9e660679a5a17a2f40",
+      "combinedHash": "05a562363bfb698159ef9552988ee6c8cd8b030600f175e0a4545dfed21a0eb9"
+    },
+    {
+      "author": "edge",
+      "bid": 76.0,
+      "selfHash": "5692fb631986c9e6489ffcea1434496653402c01f1cd752581a96c94b1ea865e",
+      "combinedHash": "e602141a20999cd870929336a5e0906a057a7f297b522f476dbb4da94856ccaa"
+    },
+    {
+      "author": "edge",
+      "bid": 77.0,
+      "selfHash": "4fca90539017ac3f54ca70e9ced42c78e96b90db251b4185f7d4f519e864ffaa",
+      "combinedHash": "afaa13f5d323e5a291662ac6201f06d13b367021d4c42b596df97be0646f082b"
+    },
+    {
+      "author": "edge",
+      "bid": 78.0,
+      "selfHash": "22058fd31e463b9e2f46461d361791e0ed4a81606de05029ebf570384dfe98c3",
+      "combinedHash": "2b2f7404c32c9d8bde6b4c1c7960ba2a33b6b1b38d7047a286a28efae2d28005"
+    },
+    {
+      "author": "edge",
+      "bid": 79.0,
+      "selfHash": "2ebee870d72479766d05d6ddd2b636c645bfc314042781906daec6b47d01e918",
+      "combinedHash": "ad5ccc60168b2664eb6de83e65290038b8e78f76ce739319c758e4759642fdf7"
+    },
+    {
+      "author": "edge",
+      "bid": 80.0,
+      "selfHash": "f3edc01495370d2c23ed75213a029e89b4f0039d94a00ef62cdde2bb35bda6b5",
+      "combinedHash": "696638215dfcec5fcd6e0f4c4be60f9dc65722caa433058c03843e75a7935fcd"
+    }
+  ],
+  "UAID": "9c620907-ea38-4cb8-bfd4-1368b49bf44a",
+  "name": "Thinkpad",
+  "type": "English"
+}
