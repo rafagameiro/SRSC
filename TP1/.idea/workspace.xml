@@ -85,6 +85,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
@@ -116,6 +117,8 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -134,15 +137,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/MulticastChat.java" />
-        <option value="$PROJECT_DIR$/src/secureProtocol/Logger.java" />
-        <option value="$PROJECT_DIR$/src/secureProtocol/SMCPSocket.java" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -153,6 +147,7 @@
     <option name="height" value="1047" />
   </component>
   <component name="ProjectId" id="1SQOBoR13NG6tMAnMORSJhUtzuh" />
+<<<<<<< Updated upstream
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -191,6 +186,8 @@
       <pane id="Scope" />
     </panes>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -276,6 +273,7 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="10115000" />
   </component>
+<<<<<<< Updated upstream
   <component name="ToolWindowManager">
     <frame x="9" y="23" width="1902" height="1048" extended-state="6" />
     <layout>
@@ -358,6 +356,11 @@
       </provider>
     </entry>
   </component>
+=======
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+>>>>>>> Stashed changes
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
